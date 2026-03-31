@@ -26,27 +26,30 @@ func _on_level_clicked(button):
 	if level_num == 0 or not GlobalConfig.unlocked_levels[level_num]:
 		print("❌ 关卡 " + str(level_num) + " 未解锁！")
 		return
+	SignalManager.change_level.emit(level_num)
+	load_level(GlobalData.L1_SCENE_PATH)
 	
+	#TODO 测试调用 正式版中不会开启 TODO
 	match button.name:
 		"LevelOne":
-			load_level(GlobalData.L1_SCENE_PATH)
-			#GlobalConfig.unlock_level(2)
+			#load_level(GlobalData.L1_SCENE_PATH)
+			GlobalConfig.unlock_level(2)
 			#print("点击了: " + button.name)
 		"LevelTwo":
-			load_level(GlobalData.L2_SCENE_PATH)
-			#GlobalConfig.unlock_level(3)
+			#load_level(GlobalData.L2_SCENE_PATH)
+			GlobalConfig.unlock_level(3)
 			#print("点击了: " + button.name)
 		"LevelThree":
-			load_level(GlobalData.L3_SCENE_PATH)
-			#GlobalConfig.unlock_level(4)
+			#load_level(GlobalData.L3_SCENE_PATH)
+			GlobalConfig.unlock_level(4)
 			#print("点击了: " + button.name)
 		"LevelFour":
-			load_level(GlobalData.L4_SCENE_PATH)
-			#GlobalConfig.unlock_level(5)
+			#load_level(GlobalData.L4_SCENE_PATH)
+			GlobalConfig.unlock_level(5)
 			#print("点击了: " + button.name)
 		"LevelFive":
-			load_level(GlobalData.L5_SCENE_PATH)
-			#GlobalConfig.reset_all_levels()
+			#load_level(GlobalData.L5_SCENE_PATH)
+			GlobalConfig.reset_all_levels()
 			#print("点击了: " + button.name)
 	# 更新关卡状态
 	refresh_all_level_buttons()

@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5phtt4etcd5e"]
+[gd_scene load_steps=8 format=3 uid="uid://c5phtt4etcd5e"]
 
 [ext_resource type="Script" uid="uid://dhgshjv802n6v" path="res://Scenes/GameScene/level_scene_one/game_1.gd" id="1_0r4sq"]
 [ext_resource type="PackedScene" uid="uid://dy255fm8pjq07" path="res://Scenes/GameScene/level_scene_one/game_ui.tscn" id="2_2fyrp"]
+[ext_resource type="Texture2D" uid="uid://b86hbcrixv8pu" path="res://resource/UI/章节/0_0010_第一章默认.png" id="2_6xvof"]
+[ext_resource type="Texture2D" uid="uid://cjsdr685amhgg" path="res://resource/UI/按钮背景.png" id="2_a5ruy"]
+[ext_resource type="Script" uid="uid://dey6y6q3tbqim" path="res://Scenes/GameScene/level_scene_one/beginning.gd" id="2_krmit"]
+[ext_resource type="Texture2D" uid="uid://6u0r5tqlxoec" path="res://resource/UI/章节/0_0011_第一章选中.png" id="3_a5ruy"]
 [ext_resource type="PackedScene" uid="uid://bllkax8oo2gyg" path="res://Scenes/HistoricalText/history_panel.tscn" id="3_ynmvb"]
 
 [node name="Game1" type="CanvasLayer"]
@@ -18,21 +22,36 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Beginning" type="Button" parent="BgAndChar/Background"]
+[node name="BtnBg" type="TextureRect" parent="BgAndChar/Background"]
+modulate = Color(1, 1, 1, 0.4627451)
+layout_mode = 0
+offset_left = 390.0
+offset_top = 568.0
+offset_right = 1459.0
+offset_bottom = 991.0
+texture = ExtResource("2_a5ruy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Beginning" type="TextureButton" parent="BgAndChar/Background"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -122.0
-offset_top = 205.0
-offset_right = 78.0
-offset_bottom = 301.0
+offset_left = -169.0
+offset_top = 157.0
+offset_right = 189.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "第一章"
+texture_normal = ExtResource("2_6xvof")
+texture_pressed = ExtResource("2_6xvof")
+texture_hover = ExtResource("3_a5ruy")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_krmit")
 
 [node name="Character" type="TextureRect" parent="BgAndChar"]
 visible = false
@@ -45,7 +64,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="GameUI" parent="." instance=ExtResource("2_2fyrp")]
-visible = false
 
 [node name="History" type="CanvasLayer" parent="."]
 
@@ -56,4 +74,4 @@ offset_top = 200.0
 offset_right = -195.0
 offset_bottom = -180.0
 
-[connection signal="pressed" from="BgAndChar/Background/Beginning" to="." method="_on_beginning_pressed"]
+[connection signal="pressed" from="BgAndChar/Background/Beginning" to="BgAndChar/Background/Beginning" method="_on_beginning_pressed"]

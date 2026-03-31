@@ -88,7 +88,7 @@ func close_history():
 	# 恢复游戏内逻辑运行
 	resume_game()
 	# 如果游戏正在运行，恢复显示主对话气球
-	if GlobalConfig.is_game_running:
+	if GameManager.is_game_running:
 		DialogueSignalManager.set_dialogue_visible(true)
 
 # 暂停游戏（只暂停玩家、敌人、NPC等游戏逻辑，UI完全不受影响）
