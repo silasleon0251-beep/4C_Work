@@ -1,0 +1,439 @@
+[gd_scene load_steps=30 format=3 uid="uid://c1pac1eq6okrt"]
+
+[ext_resource type="Script" uid="uid://85frabw7kid7" path="res://Scenes/UIScene/set_scene/general.gd" id="1_rte8c"]
+[ext_resource type="Script" uid="uid://dns4iavhfinvd" path="res://Scenes/UIScene/set_scene/basic_setting.gd" id="2_nuycc"]
+[ext_resource type="Texture2D" uid="uid://b4qv42sauc30r" path="res://resource/background/bg_game_UI/设置背景.png" id="2_rte8c"]
+[ext_resource type="FontFile" uid="uid://boj1pu15mwojr" path="res://resource/typeface/AlimamaFangYuanTiVF-Thin-2.ttf" id="3_essrk"]
+[ext_resource type="Texture2D" uid="uid://bpif82lyexvyx" path="res://resource/UI/声音设置.png" id="3_ulsti"]
+[ext_resource type="AudioStream" uid="uid://6c2sbly7r6vk" path="res://resource/sound_effect/测试音频.MP3" id="3_wbop7"]
+[ext_resource type="Texture2D" uid="uid://t4ci66t08db2" path="res://resource/UI/声音设置选中.png" id="4_aer5v"]
+[ext_resource type="AudioStream" uid="uid://1k74sw2l838x" path="res://resource/sound_effect/保存音效.MP3" id="4_wxhwk"]
+[ext_resource type="Texture2D" uid="uid://dr8cors51cwta" path="res://resource/UI/画面设置.png" id="5_m2jt7"]
+[ext_resource type="StyleBox" uid="uid://b0tfm6k3er5af" path="res://resource/style/空白.tres" id="5_wme2q"]
+[ext_resource type="Texture2D" uid="uid://c3mmebhpifhvq" path="res://resource/UI/画面设置高光.png" id="6_c2roi"]
+[ext_resource type="Texture2D" uid="uid://drbmym6j2k5yj" path="res://resource/UI/其他设置.png" id="7_3upy0"]
+[ext_resource type="Texture2D" uid="uid://bl6uxhr31u8ch" path="res://resource/UI/其他设置高光.png" id="8_nu775"]
+[ext_resource type="Texture2D" uid="uid://cneorhhkg81pg" path="res://resource/UI/保存.png" id="9_na7sa"]
+[ext_resource type="Texture2D" uid="uid://dsoj0y7qgdfqv" path="res://resource/UI/保存高光.png" id="10_f4y5x"]
+[ext_resource type="Texture2D" uid="uid://cyx28h5ovcqwc" path="res://resource/UI/测试.png" id="11_3upy0"]
+[ext_resource type="Texture2D" uid="uid://dq4ggp3xoxbf" path="res://resource/UI/重置.png" id="11_v2gnr"]
+[ext_resource type="Texture2D" uid="uid://dw1hrvvjmxfpo" path="res://resource/UI/测试高光.png" id="12_nu775"]
+[ext_resource type="Texture2D" uid="uid://dfxmtly7fag1t" path="res://resource/UI/重置高光.png" id="12_sxtxa"]
+[ext_resource type="Texture2D" uid="uid://cggi50vs0macg" path="res://resource/UI/返回.png" id="13_qchbd"]
+[ext_resource type="Texture2D" uid="uid://dpawempl58c3g" path="res://resource/UI/返回高光.png" id="14_rhvfw"]
+[ext_resource type="Texture2D" uid="uid://cp07yyqhbvsrd" path="res://resource/UI/主音量.png" id="18_qchbd"]
+[ext_resource type="FontFile" uid="uid://cv3s58w85mkm4" path="res://resource/typeface/BaoCanMouHuiTingShouXieTi2.0-2.ttf" id="22_rhvfw"]
+[ext_resource type="Texture2D" uid="uid://dkur4o54h6iem" path="res://resource/UI/背景音.png" id="23_3en6c"]
+[ext_resource type="Texture2D" uid="uid://de054mn8nof72" path="res://resource/UI/音效.png" id="24_p7012"]
+
+[sub_resource type="Gradient" id="Gradient_qchbd"]
+colors = PackedColorArray(0.64278, 0.48797733, 0.2587008, 0.3019608, 0.6431373, 0.4862745, 0.25882354, 0.3019608)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rhvfw"]
+gradient = SubResource("Gradient_qchbd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2roi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7b66"]
+content_margin_top = 33.0
+bg_color = Color(0.08235294, 0.08235294, 0.08235294, 0.39215687)
+
+[node name="SetScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="General" type="CanvasLayer" parent="."]
+script = ExtResource("1_rte8c")
+
+[node name="TextureRect" type="TextureRect" parent="General"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rte8c")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="General/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rhvfw")
+
+[node name="VSeparator" type="HBoxContainer" parent="General"]
+offset_left = 386.0
+offset_top = 152.0
+offset_right = 1624.0
+offset_bottom = 248.0
+theme_override_constants/separation = 100
+
+[node name="BasicBtn" type="TextureButton" parent="General/VSeparator"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+texture_normal = ExtResource("3_ulsti")
+texture_pressed = ExtResource("3_ulsti")
+texture_hover = ExtResource("4_aer5v")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PictureBtn" type="TextureButton" parent="General/VSeparator"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+texture_normal = ExtResource("5_m2jt7")
+texture_pressed = ExtResource("5_m2jt7")
+texture_hover = ExtResource("6_c2roi")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ControlBtn" type="TextureButton" parent="General/VSeparator"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+texture_normal = ExtResource("7_3upy0")
+texture_pressed = ExtResource("7_3upy0")
+texture_hover = ExtResource("8_nu775")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SaveBtn" type="TextureButton" parent="General"]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 724.0
+offset_top = 769.0
+offset_right = 860.0
+offset_bottom = 865.0
+texture_normal = ExtResource("9_na7sa")
+texture_pressed = ExtResource("9_na7sa")
+texture_hover = ExtResource("10_f4y5x")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ResetBtn" type="TextureButton" parent="General"]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 1020.0
+offset_top = 774.0
+offset_right = 1156.0
+offset_bottom = 870.0
+texture_normal = ExtResource("11_v2gnr")
+texture_pressed = ExtResource("11_v2gnr")
+texture_hover = ExtResource("12_sxtxa")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BackBtn" type="TextureButton" parent="General"]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 253.0
+offset_top = 815.0
+offset_right = 453.0
+offset_bottom = 911.0
+texture_normal = ExtResource("13_qchbd")
+texture_pressed = ExtResource("13_qchbd")
+texture_hover = ExtResource("14_rhvfw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TestBtn" type="TextureButton" parent="General"]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 1527.0
+offset_top = 825.0
+offset_right = 1727.0
+offset_bottom = 921.0
+texture_normal = ExtResource("11_3upy0")
+texture_pressed = ExtResource("11_3upy0")
+texture_hover = ExtResource("12_nu775")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BasicSetting" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="BasicSetting" node_paths=PackedStringArray("main_volume_slider", "bgm_volume_slider", "sound_volume_slider")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 143.0
+offset_top = 329.0
+offset_right = -216.0
+offset_bottom = -157.25
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.64)
+script = ExtResource("2_nuycc")
+main_volume_slider = NodePath("MainVolume/HSliderValue")
+bgm_volume_slider = NodePath("BGM/HSliderValue")
+sound_volume_slider = NodePath("SoundEffect/HSliderValue")
+
+[node name="MainVolume" type="HBoxContainer" parent="BasicSetting/Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 256.0
+offset_top = 48.437477
+offset_right = 1554.0
+offset_bottom = 148.43747
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.4999981)
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="BasicSetting/Control/MainVolume"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+texture = ExtResource("18_qchbd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitlePanel" type="Panel" parent="BasicSetting/Control/MainVolume"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c2roi")
+
+[node name="Title" type="Label" parent="BasicSetting/Control/MainVolume/TitlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_essrk")
+theme_override_font_sizes/font_size = 64
+text = "主音量"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSliderValue" type="HSlider" parent="BasicSetting/Control/MainVolume"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxFlat_n7b66")
+tick_count = 10
+
+[node name="TestButton" type="TextureButton" parent="BasicSetting/Control/MainVolume"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+texture_normal = ExtResource("11_3upy0")
+texture_pressed = ExtResource("11_3upy0")
+texture_hover = ExtResource("12_nu775")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="AudioTest" type="AudioStreamPlayer2D" parent="BasicSetting/Control/MainVolume/TestButton"]
+stream = ExtResource("3_wbop7")
+
+[node name="Panel" type="Panel" parent="BasicSetting/Control/MainVolume"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_wme2q")
+
+[node name="Number" type="Label" parent="BasicSetting/Control/MainVolume/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("22_rhvfw")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BGM" type="HBoxContainer" parent="BasicSetting/Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 256.0
+offset_top = 232.81256
+offset_right = 1554.0
+offset_bottom = 332.81256
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.4999981)
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="BasicSetting/Control/BGM"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+texture = ExtResource("23_3en6c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitlePanel" type="Panel" parent="BasicSetting/Control/BGM"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_wme2q")
+
+[node name="Title" type="Label" parent="BasicSetting/Control/BGM/TitlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_essrk")
+theme_override_font_sizes/font_size = 64
+text = "背景音"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSliderValue" type="HSlider" parent="BasicSetting/Control/BGM"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxFlat_n7b66")
+tick_count = 10
+
+[node name="TestButton" type="TextureButton" parent="BasicSetting/Control/BGM"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+texture_normal = ExtResource("11_3upy0")
+texture_pressed = ExtResource("11_3upy0")
+texture_hover = ExtResource("12_nu775")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="AudioTest" type="AudioStreamPlayer2D" parent="BasicSetting/Control/BGM/TestButton"]
+stream = ExtResource("3_wbop7")
+
+[node name="Panel" type="Panel" parent="BasicSetting/Control/BGM"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_wme2q")
+
+[node name="Number" type="Label" parent="BasicSetting/Control/BGM/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("22_rhvfw")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundEffect" type="HBoxContainer" parent="BasicSetting/Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 260.0
+offset_top = 398.4375
+offset_right = 1558.0
+offset_bottom = 498.4375
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.4999981)
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="BasicSetting/Control/SoundEffect"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+texture = ExtResource("24_p7012")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitlePanel" type="Panel" parent="BasicSetting/Control/SoundEffect"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_wme2q")
+
+[node name="Title" type="Label" parent="BasicSetting/Control/SoundEffect/TitlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_essrk")
+theme_override_font_sizes/font_size = 64
+text = "音效"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSliderValue" type="HSlider" parent="BasicSetting/Control/SoundEffect"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxFlat_n7b66")
+tick_count = 10
+
+[node name="TestButton" type="TextureButton" parent="BasicSetting/Control/SoundEffect"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+texture_normal = ExtResource("11_3upy0")
+texture_pressed = ExtResource("11_3upy0")
+texture_hover = ExtResource("12_nu775")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="AudioTest" type="AudioStreamPlayer2D" parent="BasicSetting/Control/SoundEffect/TestButton"]
+stream = ExtResource("4_wxhwk")
+
+[node name="Panel" type="Panel" parent="BasicSetting/Control/SoundEffect"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_wme2q")
+
+[node name="Number" type="Label" parent="BasicSetting/Control/SoundEffect/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("22_rhvfw")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PictureSetting" type="CanvasLayer" parent="."]
+
+[node name="SettingsUI" type="Control" parent="PictureSetting"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 318.0
+offset_top = 311.0
+offset_right = 1714.0
+offset_bottom = 739.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PictureSetting/SettingsUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlSetting" type="CanvasLayer" parent="."]
+visible = false
+
+[connection signal="pressed" from="General/VSeparator/BasicBtn" to="General" method="_on_basic_btn_pressed"]
+[connection signal="pressed" from="General/VSeparator/PictureBtn" to="General" method="_on_picture_btn_pressed"]
+[connection signal="pressed" from="General/VSeparator/ControlBtn" to="General" method="_on_control_btn_pressed"]
+[connection signal="pressed" from="General/SaveBtn" to="General" method="_on_save_btn_pressed"]
+[connection signal="pressed" from="General/ResetBtn" to="General" method="_on_reset_btn_pressed"]
+[connection signal="pressed" from="General/BackBtn" to="General" method="_on_back_btn_pressed"]
+[connection signal="pressed" from="General/TestBtn" to="General" method="_on_test_btn_pressed"]

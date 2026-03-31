@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://blmkdu7v8u2p1"]
+
+[ext_resource type="Script" uid="uid://bccd745mg0uq4" path="res://auto_scene/global_brightness.gd" id="1_rxle1"]
+
+[node name="GlobalBrightness" type="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+z_index = 999
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_rxle1")

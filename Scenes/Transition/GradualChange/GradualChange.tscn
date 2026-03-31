@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://pq1ow7c3c87m"]
+
+[ext_resource type="Script" uid="uid://x22w0qvotq3t" path="res://Scenes/Transition/GradualChange/gradual_change.gd" id="1_cd8nv"]
+
+[sub_resource type="Animation" id="Animation_3bqe7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MyColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.39181864, 0.39181864, 0.3918185, 0.7647059)]
+}
+
+[sub_resource type="Animation" id="Animation_gxdm7"]
+resource_name = "gradual_change"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MyColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.39215687, 0.39215687, 0.39215687, 0), Color(0, 0, 0, 0.22352941)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2p3g2"]
+_data = {
+&"RESET": SubResource("Animation_3bqe7"),
+&"gradual_change": SubResource("Animation_gxdm7")
+}
+
+[node name="GradualChange" type="CanvasLayer"]
+script = ExtResource("1_cd8nv")
+
+[node name="MyColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.39181864, 0.39181864, 0.3918185, 0.7647059)
+
+[node name="AnimGradual" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2p3g2")
+}

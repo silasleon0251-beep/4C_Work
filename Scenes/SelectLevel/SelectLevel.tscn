@@ -1,0 +1,132 @@
+[gd_scene load_steps=20 format=3 uid="uid://cdcevdspiwvr5"]
+
+[ext_resource type="Script" uid="uid://qx8uggohxsod" path="res://Scenes/SelectLevel/select_level.gd" id="1_epbsi"]
+[ext_resource type="Texture2D" uid="uid://co55grrtuffw2" path="res://resource/background/bg_game_UI/目录.png" id="2_ho2ql"]
+[ext_resource type="Texture2D" uid="uid://cld6vxqjdvhtb" path="res://resource/目录/书签/书签一默认.png" id="3_fn6gj"]
+[ext_resource type="Texture2D" uid="uid://cuo0lqnce8tqy" path="res://resource/目录/书签/书签一选中.png" id="4_mdauv"]
+[ext_resource type="Texture2D" uid="uid://ubqukvjjos1h" path="res://resource/目录/书签/书签一锁定.png" id="5_2u26v"]
+[ext_resource type="Texture2D" uid="uid://d11mtbhlqtmva" path="res://resource/目录/书签/书签二默认.png" id="6_4jpgj"]
+[ext_resource type="Texture2D" uid="uid://sxtlek13b2af" path="res://resource/目录/书签/书签二选中.png" id="7_eua5y"]
+[ext_resource type="Texture2D" uid="uid://bptbbrvbdws88" path="res://resource/目录/书签/书签二锁定.png" id="8_1wlri"]
+[ext_resource type="Texture2D" uid="uid://dkjfqrqkq6wom" path="res://resource/目录/书签/目录_返回.png" id="8_ho2ql"]
+[ext_resource type="Texture2D" uid="uid://3f0orep3u68w" path="res://resource/目录/书签/书签三默认.png" id="9_b0uud"]
+[ext_resource type="Texture2D" uid="uid://bdrr5p4tkg31r" path="res://resource/目录/书签/书签三选中.png" id="10_vcaf1"]
+[ext_resource type="Texture2D" uid="uid://dp5231qwq7n2c" path="res://resource/目录/书签/书签三锁定.png" id="11_2tsu5"]
+[ext_resource type="Texture2D" uid="uid://1nin107855y8" path="res://resource/目录/书签/书签四默认.png" id="12_aol32"]
+[ext_resource type="Texture2D" uid="uid://cdpuj0s0xevku" path="res://resource/目录/书签/书签四选中.png" id="13_jubhi"]
+[ext_resource type="Texture2D" uid="uid://be0vuf18j3a1s" path="res://resource/目录/书签/书签四锁定.png" id="14_qmtir"]
+[ext_resource type="Texture2D" uid="uid://0vlxipcck567" path="res://resource/目录/书签/书签五默认.png" id="15_c2xwl"]
+[ext_resource type="Texture2D" uid="uid://c4lsn4mgelx22" path="res://resource/目录/书签/书签五选中.png" id="16_pbfwj"]
+[ext_resource type="Texture2D" uid="uid://dcnu1mmvgg8hq" path="res://resource/目录/书签/书签五锁定.png" id="17_xpijg"]
+[ext_resource type="Texture2D" uid="uid://cverjkomvhgsv" path="res://resource/目录/书签/重置图标.png" id="19_mdauv"]
+
+[node name="SelectLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_epbsi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ho2ql")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LevelOne" type="TextureButton" parent="." groups=["Level"]]
+layout_mode = 0
+offset_left = 1037.0
+offset_top = 154.0
+offset_right = 1167.0
+offset_bottom = 844.0
+texture_normal = ExtResource("3_fn6gj")
+texture_pressed = ExtResource("3_fn6gj")
+texture_hover = ExtResource("4_mdauv")
+texture_disabled = ExtResource("5_2u26v")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="LevelTwo" type="TextureButton" parent="." groups=["Level"]]
+layout_mode = 0
+offset_left = 1174.0
+offset_top = 153.0
+offset_right = 1304.0
+offset_bottom = 843.0
+texture_normal = ExtResource("6_4jpgj")
+texture_pressed = ExtResource("6_4jpgj")
+texture_hover = ExtResource("7_eua5y")
+texture_disabled = ExtResource("8_1wlri")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="LevelThree" type="TextureButton" parent="." groups=["Level"]]
+layout_mode = 0
+offset_left = 1309.0
+offset_top = 155.0
+offset_right = 1439.0
+offset_bottom = 845.0
+texture_normal = ExtResource("9_b0uud")
+texture_pressed = ExtResource("9_b0uud")
+texture_hover = ExtResource("10_vcaf1")
+texture_disabled = ExtResource("11_2tsu5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="LevelFour" type="TextureButton" parent="." groups=["Level"]]
+layout_mode = 0
+offset_left = 1445.0
+offset_top = 152.0
+offset_right = 1575.0
+offset_bottom = 842.0
+texture_normal = ExtResource("12_aol32")
+texture_pressed = ExtResource("12_aol32")
+texture_hover = ExtResource("13_jubhi")
+texture_disabled = ExtResource("14_qmtir")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="LevelFive" type="TextureButton" parent="." groups=["Level"]]
+layout_mode = 0
+offset_left = 1581.0
+offset_top = 156.0
+offset_right = 1711.0
+offset_bottom = 846.0
+texture_normal = ExtResource("15_c2xwl")
+texture_pressed = ExtResource("15_c2xwl")
+texture_hover = ExtResource("16_pbfwj")
+texture_disabled = ExtResource("17_xpijg")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BackStart" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 852.0
+offset_right = 330.0
+offset_bottom = 945.0
+texture_normal = ExtResource("8_ho2ql")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Reset" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1576.0001
+offset_top = 877.00006
+offset_right = 1664.0001
+offset_bottom = 983.1617
+rotation = -0.3881905
+texture_normal = ExtResource("19_mdauv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="BackStart" to="." method="_on_back_start_pressed"]
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]

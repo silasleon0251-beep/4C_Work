@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://dy255fm8pjq07"]
+
+[ext_resource type="Script" uid="uid://cgc5dbw4vn1vv" path="res://Scenes/GameScene/level_scene_one/game_ui.gd" id="1_6kk3y"]
+[ext_resource type="Texture2D" uid="uid://nex17e6vhhfw" path="res://resource/UI/继续游戏默认.png" id="2_12ljb"]
+[ext_resource type="Texture2D" uid="uid://fhm07y3ypbb1" path="res://resource/UI/继续游戏选中.png" id="3_bp22a"]
+[ext_resource type="Texture2D" uid="uid://bikhssojnrcs5" path="res://resource/UI/返回主界面默认.png" id="4_mg6sd"]
+[ext_resource type="Texture2D" uid="uid://bux5dcscrxoqr" path="res://resource/UI/返回主界面选中.png" id="5_88n85"]
+[ext_resource type="Texture2D" uid="uid://cjyc2ta2wcv73" path="res://resource/UI/毛笔痕迹2.png" id="6_6embv"]
+[ext_resource type="Texture2D" uid="uid://cbypny5tbq65i" path="res://resource/UI/游戏暂停白色.png" id="7_kq6vf"]
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_6kk3y")
+
+[node name="Beginning" type="Button" parent="."]
+visible = false
+offset_left = 837.0
+offset_top = 745.0
+offset_right = 1037.0
+offset_bottom = 841.0
+theme_override_font_sizes/font_size = 64
+text = "第一章"
+
+[node name="PauseInterface" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(800, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -250.0
+offset_right = 400.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54901963, 0.54901963, 0.54901963, 0.32941177)
+
+[node name="ContinueBtn" type="TextureButton" parent="PauseInterface"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 280.0
+offset_top = 230.0
+offset_right = 523.0
+offset_bottom = 319.0
+texture_normal = ExtResource("2_12ljb")
+texture_pressed = ExtResource("2_12ljb")
+texture_hover = ExtResource("3_bp22a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ReturnMain" type="TextureButton" parent="PauseInterface"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 280.0
+offset_top = 318.0
+offset_right = 520.0
+offset_bottom = 398.0
+texture_normal = ExtResource("4_mg6sd")
+texture_pressed = ExtResource("4_mg6sd")
+texture_hover = ExtResource("5_88n85")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="PauseInterface"]
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -19.0
+offset_right = 32.0
+offset_bottom = 21.0
+
+[node name="LabelBg" type="TextureRect" parent="PauseInterface/Control"]
+custom_minimum_size = Vector2(330, 70)
+layout_mode = 0
+offset_left = 88.0
+offset_top = 78.76636
+offset_right = 652.0
+offset_bottom = 338.76636
+rotation = -0.2157957
+texture = ExtResource("6_6embv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="TextureRect" parent="PauseInterface/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 143.0
+offset_top = 50.766357
+offset_right = 620.0
+offset_bottom = 201.26636
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_kq6vf")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="PauseInterface/ContinueBtn" to="." method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="PauseInterface/ReturnMain" to="." method="_on_return_main_pressed"]

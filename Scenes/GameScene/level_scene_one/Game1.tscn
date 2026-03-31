@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5phtt4etcd5e"]
+
+[ext_resource type="Script" uid="uid://dhgshjv802n6v" path="res://Scenes/GameScene/level_scene_one/game_1.gd" id="1_0r4sq"]
+[ext_resource type="PackedScene" uid="uid://dy255fm8pjq07" path="res://Scenes/GameScene/level_scene_one/game_ui.tscn" id="2_2fyrp"]
+[ext_resource type="PackedScene" uid="uid://bllkax8oo2gyg" path="res://Scenes/HistoricalText/history_panel.tscn" id="3_ynmvb"]
+
+[node name="Game1" type="CanvasLayer"]
+script = ExtResource("1_0r4sq")
+
+[node name="BgAndChar" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="BgAndChar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Beginning" type="Button" parent="BgAndChar/Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = 205.0
+offset_right = 78.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "第一章"
+
+[node name="Character" type="TextureRect" parent="BgAndChar"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GameUI" parent="." instance=ExtResource("2_2fyrp")]
+visible = false
+
+[node name="History" type="CanvasLayer" parent="."]
+
+[node name="HistoryPanel" parent="History" instance=ExtResource("3_ynmvb")]
+visible = false
+offset_left = 225.0
+offset_top = 200.0
+offset_right = -195.0
+offset_bottom = -180.0
+
+[connection signal="pressed" from="BgAndChar/Background/Beginning" to="." method="_on_beginning_pressed"]

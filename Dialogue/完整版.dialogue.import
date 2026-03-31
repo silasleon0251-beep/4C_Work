@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c1420wt7emlbn"
+path="res://.godot/imported/完整版.dialogue-05a7ff0cd3824a925aac0b016826b1e8.tres"
+
+[deps]
+
+source_file="res://Dialogue/完整版.dialogue"
+dest_files=["res://.godot/imported/完整版.dialogue-05a7ff0cd3824a925aac0b016826b1e8.tres"]
+
+[params]
+
+defaults=true

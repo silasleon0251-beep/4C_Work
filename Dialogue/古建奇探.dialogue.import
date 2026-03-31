@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://blaxwr76evam4"
+path="res://.godot/imported/古建奇探.dialogue-3c4785ff49e48a7e4318b3cda51a41c5.tres"
+
+[deps]
+
+source_file="res://Dialogue/古建奇探.dialogue"
+dest_files=["res://.godot/imported/古建奇探.dialogue-3c4785ff49e48a7e4318b3cda51a41c5.tres"]
+
+[params]
+
+defaults=true

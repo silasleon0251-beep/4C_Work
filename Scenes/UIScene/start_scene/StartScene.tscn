@@ -1,0 +1,148 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0aulvi31pctd"]
+
+[ext_resource type="Script" uid="uid://c1q7tw5ckrhge" path="res://Scenes/UIScene/start_scene/start_UI.gd" id="1_e71u5"]
+[ext_resource type="Texture2D" uid="uid://dgqh6ooage2nv" path="res://resource/background/bg_game_UI/主界面.png" id="2_e71u5"]
+[ext_resource type="Texture2D" uid="uid://bpjy7ph25bc0d" path="res://resource/UI/副标题.png" id="3_0agcx"]
+[ext_resource type="Texture2D" uid="uid://dils4fof6sinp" path="res://resource/UI/开始游戏2.png" id="3_d613j"]
+[ext_resource type="Texture2D" uid="uid://4adp3ji2cft6" path="res://resource/UI/标题横版.png" id="3_i84um"]
+[ext_resource type="Texture2D" uid="uid://c86stmmocyqsa" path="res://resource/UI/开始游戏2选中.png" id="4_agwiw"]
+[ext_resource type="Texture2D" uid="uid://cjyc2ta2wcv73" path="res://resource/UI/毛笔痕迹2.png" id="4_u6hi6"]
+[ext_resource type="Texture2D" uid="uid://cm6iog5bu3h7r" path="res://resource/UI/设置2.png" id="5_swgfy"]
+[ext_resource type="Texture2D" uid="uid://id2u30ia1ewe" path="res://resource/UI/设置2选中.png" id="6_i84um"]
+[ext_resource type="Texture2D" uid="uid://dht4iq00pqs03" path="res://resource/UI/退出2.png" id="7_0agcx"]
+[ext_resource type="Texture2D" uid="uid://dtcambg0twt8t" path="res://resource/UI/退出2选中.png" id="8_u6hi6"]
+[ext_resource type="Texture2D" uid="uid://bwqsyhmdvbhkf" path="res://resource/Ver/游戏开发版本记录.png" id="12_1q0uw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sk6gg"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="StartScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e71u5")
+metadata/_edit_horizontal_guides_ = [582.0]
+
+[node name="HeadLine" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e71u5")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HeadLine"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 0
+offset_left = 1001.0
+offset_top = 452.0
+offset_right = 1501.0
+offset_bottom = 652.0
+texture = ExtResource("3_0agcx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="HeadLine"]
+modulate = Color(1, 1, 1, 0.6627451)
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 345.0
+offset_top = 334.00003
+offset_right = 1345.0
+offset_bottom = 834.0
+rotation = -0.34814364
+texture = ExtResource("4_u6hi6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EasterEgg" type="TextureButton" parent="HeadLine"]
+custom_minimum_size = Vector2(1000, 250)
+layout_mode = 0
+offset_left = 466.0
+offset_top = 256.0
+offset_right = 1466.0
+offset_bottom = 506.0
+texture_normal = ExtResource("3_i84um")
+texture_pressed = ExtResource("3_i84um")
+texture_hover = ExtResource("3_i84um")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 0
+offset_left = 724.0
+offset_top = 539.0
+offset_right = 1224.0
+offset_bottom = 1039.0
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="StartBut" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture_normal = ExtResource("3_d613j")
+texture_pressed = ExtResource("3_d613j")
+texture_hover = ExtResource("4_agwiw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SetBut" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture_normal = ExtResource("5_swgfy")
+texture_pressed = ExtResource("5_swgfy")
+texture_hover = ExtResource("6_i84um")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture_normal = ExtResource("7_0agcx")
+texture_pressed = ExtResource("7_0agcx")
+texture_hover = ExtResource("8_u6hi6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 45.0
+offset_top = 166.0
+offset_right = 1875.0
+offset_bottom = 966.0
+texture = ExtResource("12_1q0uw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EasterEggExit" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 1737.0
+offset_top = 60.0
+offset_right = 1825.0
+offset_bottom = 148.0
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_sk6gg")
+text = "X"
+
+[node name="CollectBut" type="Button" parent="."]
+layout_mode = 0
+offset_left = -221.0
+offset_top = 961.0
+offset_right = -85.0
+offset_bottom = 1057.0
+theme_override_font_sizes/font_size = 64
+text = "收藏"
+
+[connection signal="pressed" from="HeadLine/EasterEgg" to="." method="_on_easter_egg_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartBut" to="." method="_on_start_but_pressed"]
+[connection signal="pressed" from="VBoxContainer/SetBut" to="." method="_on_set_but_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="TextureRect/EasterEggExit" to="." method="_on_easter_egg_exit_pressed"]
+[connection signal="pressed" from="CollectBut" to="." method="_on_collect_but_pressed"]
