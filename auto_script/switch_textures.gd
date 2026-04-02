@@ -92,13 +92,13 @@ func change_background_with_fade(target_node: TextureRect, image_path: String) -
 		return
 	print("[全局背景] 加载成功 -> ", image_path)
 	# 淡出动画
-	var tween_out = target_node.create_tween()
+	var tween_out:Tween = target_node.create_tween()
 	tween_out.tween_property(target_node, "modulate:a", 0.0, 0.3)
 	
 	# 完成后切换并淡入
-	tween_out.finished.connect(func():
+	tween_out.finished.connect(func()->void:
 		target_node.texture = new_texture
-		var tween_in = target_node.create_tween()
+		var tween_in:Tween = target_node.create_tween()
 		tween_in.tween_property(target_node, "modulate:a", 1.0, 0.3)
 	)
 

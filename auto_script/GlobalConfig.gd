@@ -2,11 +2,11 @@ extends Node
 
 # 使用Config保存数据
 
-var config = ConfigFile.new()
+var config: = ConfigFile.new()
 var is_data_ok: bool = false
 
 # 音量初始值
-var default_val = 50
+var default_val:int = 50
 # 三个音量变量
 var main_volume_value: int = 50     # 主音量
 var bgm_value: int = 1             # 背景音
@@ -39,9 +39,9 @@ enum Chapters {
 }
 # 全局变量：记录哪个关卡已解锁
 # 默认只有第一关解锁
-var unlocked_levels = [null, true, false, false, false, false]
+var unlocked_levels:Array = [null, true, false, false, false, false]
 
-func _ready():
+func _ready()->void:
 	print(self.name ,"ready 运行")
 	
 	# 默认初始化
@@ -59,8 +59,8 @@ func _ready():
 # TODO 可以改变存储方法?? TODO
 
 ## 加载数据
-func load_config():
-	var err = config.load(CONFIG_PATH)  # 这里也对应改为 config
+func load_config()->void:
+	var err:Error = config.load(CONFIG_PATH)  # 这里也对应改为 config
 	if err == OK:
 		main_volume_value = config.get_value("BasicSettings", "main_volume_value", main_volume_value)
 		bgm_value = config.get_value("BasicSettings", "bgm_value", bgm_value)
@@ -78,7 +78,7 @@ func load_config():
 		save_config()
 
 ## 保存数据
-func save_config():
+func save_config()->void:
 	config.set_value("BasicSettings", "main_volume_value", main_volume_value)  # 对应改为 config
 	config.set_value("BasicSettings", "bgm_value", bgm_value)
 	config.set_value("BasicSettings", "sound_effect_value", sound_effect_value)

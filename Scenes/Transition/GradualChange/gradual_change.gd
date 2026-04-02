@@ -5,7 +5,7 @@ extends CanvasLayer
 # 参数：
 #   scene_path: 目标场景路径（如 "res://scenes/Game.tscn"）
 #   keep_current: 是否保留当前场景（默认false，销毁非目标场景）
-func change_scene(scene_path: String, keep_current: bool = false):
+func change_scene(scene_path: String, keep_current: bool = false)->void:
 	my_color_rect.show()
 	
 	# 播放淡出动画并等待完成
@@ -24,7 +24,7 @@ func change_scene(scene_path: String, keep_current: bool = false):
 	pass
 	
  
-func play_anim_and_wait(anim_name:String, is_backward:bool):
+func play_anim_and_wait(anim_name:String, is_backward:bool)->void:
 	if is_backward:
 		anim_gradual.play_backwards(anim_name)
 	else:

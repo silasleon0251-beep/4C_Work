@@ -17,14 +17,14 @@ func _exit_tree() -> void:
 	print("游戏一销毁完成")
 
 
-func _show_character(my_name : String):
+func _show_character(my_name : String)->void:
 	character.texture = null
 	character.visible = true
 	SwitchTextures.show_character(character,my_name)
 
-func _hide_character(_my_name : String):
+func _hide_character(_my_name : String)->void:
 	character.visible = false
 
-func _receive_signal(my_texture:String):
+func _receive_signal(my_texture:String)->void:
 	print("收到信号:", my_texture)
 	SwitchTextures.change_bg_by_name(background,my_texture)

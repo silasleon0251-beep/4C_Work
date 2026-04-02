@@ -32,7 +32,7 @@ func _ready() -> void:
 func _on_dialogue_started(_resource: Resource) -> void:
 	# 方式1：从分组中获取对话气球节点（推荐，精准高效）
 	# 前提：需要在编辑器中给气球节点设置分组 dialog_balloon
-	var balloon_node = get_tree().get_first_node_in_group("dialogue_balloon")
+	var balloon_node:Node = get_tree().get_first_node_in_group("dialogue_balloon")
 	# 判断节点存在且类型匹配
 	if balloon_node and balloon_node is MyGame_DialogueManagerExampleBalloon:
 		_update_manager_instance(balloon_node)
@@ -40,7 +40,7 @@ func _on_dialogue_started(_resource: Resource) -> void:
 	# 方式2：遍历场景树查找管理器（兜底方案，分组失效时使用）
 	else:
 		# 递归查找名称为 MyExampleBalloon 的子节点
-		var new_manager = get_tree().root.find_child("MyExampleBalloon", true, false)
+		var new_manager:Node = get_tree().root.find_child("MyExampleBalloon", true, false)
 		if new_manager and new_manager is MyGame_DialogueManagerExampleBalloon:
 			_update_manager_instance(new_manager)
 
@@ -84,5 +84,5 @@ func set_dialogue_visible(is_visible: bool) -> bool:
 	# 执行成功
 	return true
 
-func _game_over():
+func _game_over()->void:
 	GradualChange.change_scene(MAIN_PATH)

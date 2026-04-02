@@ -30,6 +30,10 @@ GlobalData="*res://auto_script/global_data.gd"
 SwitchTextures="*res://auto_script/switch_textures.gd"
 GameManager="*res://auto_script/game_manager.gd"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+
 [dialogue_manager]
 
 runtime/advanced/uses_dotnet=true
@@ -38,6 +42,8 @@ runtime/advanced/uses_dotnet=true
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [dotnet]
 
@@ -46,6 +52,17 @@ project/assembly_name="古建奇探"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Dialogue/": "orange",
+"res://Scenes/": "blue",
+"res://addons/": "gray",
+"res://auto_scene/": "red",
+"res://auto_script/": "red",
+"res://resource/": "green"
+}
 
 [global_group]
 

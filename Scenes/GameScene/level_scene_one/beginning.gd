@@ -20,8 +20,8 @@ var buton_textures : Array = [
 
 
 func _ready() -> void:
-	var lv_num = 0
-	for temp in GlobalData.change_lv:
+	var lv_num:int = 0
+	for temp:bool in GlobalData.change_lv:
 		if temp :
 			print(lv_num)
 			change_btn_textures(lv_num)
@@ -43,8 +43,8 @@ func _ready() -> void:
 func _on_beginning_pressed() -> void:
 	print(self.name, " 被按下")
 	
-	var lv_num = 0
-	for temp in GlobalData.change_lv:
+	var lv_num:int = 0
+	for temp:bool in GlobalData.change_lv:
 		if temp :
 			print(lv_num)
 			match lv_num:
@@ -68,7 +68,7 @@ func _on_beginning_pressed() -> void:
 	DialogueSignalManager.set_dialogue_visible(true)
 
 # 切换按钮纹理
-func change_btn_textures(lv_num : int):
+func change_btn_textures(lv_num : int)->void:
 	set_button_textures(
 		self,
 		buton_textures[lv_num * 2],            # 默认纹理
@@ -82,7 +82,7 @@ func set_button_textures(
 	my_normal: String,
 	my_hover: String,
 	my_pressed: String,
-):
+)->void:
 	if not is_instance_valid(btn):
 		return
 	

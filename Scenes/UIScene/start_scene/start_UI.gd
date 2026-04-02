@@ -35,16 +35,16 @@ func _on_exit_pressed() -> void:
 	# 1. 清理SceneManager的场景缓存（释放所有缓存的场景实例）
 	if SceneManager:
 		# 遍历缓存，销毁所有场景节点并清空缓存
-		var scene_paths = SceneManager.scene_cache.keys()
-		for path in scene_paths:
-			var scene = SceneManager.scene_cache[path]
+		var scene_paths:Array = SceneManager.scene_cache.keys()
+		for path:String in scene_paths:
+			var scene:Node = SceneManager.scene_cache[path]
 			if scene and scene.is_inside_tree():
 				scene.queue_free()  # 销毁场景节点
 		SceneManager.scene_cache.clear()  # 清空缓存字典
 		SceneManager.current_scene = null  # 清空当前场景引用
 	
 	 # 2. 安全清理节点（只清理"场景节点"，不销毁根节点核心组件）
-	var root = get_tree().root
+	var root:Node = get_tree().root
 	for child in root.get_children():
 		# 只销毁场景节点和非核心UI，保留自动加载的SceneManager
 		if child.name != "SceneManager" and (child.has_meta("is_scene_node") or child is Control):

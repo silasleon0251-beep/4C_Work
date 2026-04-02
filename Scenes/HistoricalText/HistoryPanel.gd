@@ -35,7 +35,7 @@ func _ready() -> void:
 	SignalManager.change_visible_historypanel.connect(_update_visible)
 
 # 加载自定义字体文件
-func _load_custom_font():
+func _load_custom_font() -> void:
 	# 判断字体文件是否存在
 	if FileAccess.file_exists(font_path):
 		# 加载字体资源
@@ -45,7 +45,7 @@ func _load_custom_font():
 		print("字体文件不存在，请检查路径：", font_path)
 
 # 场景树节点添加时触发（全局监听节点创建）
-func _on_node_added(node: Node):
+func _on_node_added(node: Node) -> void:
 	# 判断添加的节点是否为对话管理器
 	if node.name == "MyExampleBalloon":
 		# 连接对话管理器的就绪信号，等待管理器初始化完成
@@ -53,7 +53,7 @@ func _on_node_added(node: Node):
 
 # 👇 【收到信号 → 拿到对话管理器！】
 # 对话管理器就绪时触发，获取并保存管理器实例
-func _on_dialogue_manager_ready(manager: Node):
+func _on_dialogue_manager_ready(manager: Node) -> void:
 	_dialogue_manager = manager
 	print("成功拿到对话管理器：", manager.name)
 
@@ -67,7 +67,7 @@ func _update_visible(is_visibling : bool)->void:
 	
 
 # 打开历史面板
-func open_history():
+func open_history() -> void:
 	# 显示面板
 	visible = true
 	# 刷新历史记录显示内容
@@ -82,7 +82,7 @@ func open_history():
 	DialogueSignalManager.set_dialogue_visible(false)
 
 # 关闭历史面板
-func close_history():
+func close_history() -> void:
 	# 隐藏面板
 	visible = false
 	# 恢复游戏内逻辑运行
@@ -92,14 +92,14 @@ func close_history():
 		DialogueSignalManager.set_dialogue_visible(true)
 
 # 暂停游戏（只暂停玩家、敌人、NPC等游戏逻辑，UI完全不受影响）
-func pause_game_only():
+func pause_game_only() -> void:
 	# 遍历 GamePlay 组里所有节点，只暂停它们的逻辑
 	for node in get_tree().get_nodes_in_group("GamePlay"):
 		if node.is_valid() and node.has_method("set_paused"):
 			node.paused = true
 
 # 恢复游戏（恢复所有游戏逻辑节点运行）
-func resume_game():
+func resume_game() -> void:
 	for node in get_tree().get_nodes_in_group("GamePlay"):
 		if node.is_valid() and node.has_method("set_paused"):
 			node.paused = false
@@ -134,7 +134,7 @@ func refresh_display() -> void:
 		return
 
 	# 遍历所有历史记录并添加到容器
-	for entry in history:
+	for entry:Dictionary in history:
 		_add_history_entry(entry)
 
 	# 等待一帧后，强制滚动到底部显示最新记录
@@ -148,7 +148,7 @@ func _clear_container() -> void:
 
 # 统一设置标签样式
 # 参数：label-目标标签 font_size-字体大小 color-文字颜色
-func setup_label_style(label: Label, font_size: int = 30, color: Color = Color(1,1,1)):
+func setup_label_style(label: Label, font_size: int = 30, color: Color = Color(1,1,1)) -> void:
 	# 覆盖字体大小
 	label.add_theme_font_size_override("font_size", font_size)
 	# 设置文字颜色
@@ -159,7 +159,7 @@ func setup_label_style(label: Label, font_size: int = 30, color: Color = Color(1
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 # 给标签应用自定义加载的字体
-func set_label_font(label: Label):
+func set_label_font(label: Label) -> void:
 	if _custom_font:
 		label.add_theme_font_override("font", _custom_font)
 
@@ -183,7 +183,7 @@ func _add_history_entry(entry: Dictionary) -> void:
 		_add_label_entry(entry)
 
 # 用标签展示单条历史记录内容（核心渲染方法）
-func _add_label_entry(entry: Dictionary):
+func _add_label_entry(entry: Dictionary)->void:
 	var label := Label.new()
 	
 	# 获取说话人名称并清理格式

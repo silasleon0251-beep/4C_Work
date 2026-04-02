@@ -1,7 +1,7 @@
 extends Control
 
 
-func _ready():
+func _ready()->void:
 	# 初始化：刷新所有关卡按钮状态
 	refresh_all_level_buttons()
 
@@ -9,7 +9,7 @@ func refresh_all_level_buttons() -> void:
 	# 自动获取所有组名为 Level 的按钮
 	for btn in get_tree().get_nodes_in_group("Level"):
 		 # 获取关卡号
-		var level_num = get_level_number(btn.name)
+		var level_num:int = get_level_number(btn.name)
 		# 设置锁定/解锁状态
 		if level_num != 0:
 			set_lock_level(btn, level_num)
@@ -19,9 +19,9 @@ func refresh_all_level_buttons() -> void:
 
 
 # 所有关卡按钮共用的点击函数
-func _on_level_clicked(button):
+func _on_level_clicked(button:TextureButton)->void:
 	# 获取关卡编号
-	var level_num = get_level_number(button.name)
+	var level_num:int = get_level_number(button.name)
 	# 安全判断：关卡已解锁才允许进入
 	if level_num == 0 or not GlobalConfig.unlocked_levels[level_num]:
 		print("❌ 关卡 " + str(level_num) + " 未解锁！")
@@ -75,7 +75,7 @@ func get_level_number(lv_name: String) -> int:
 
 
 # 设置关卡是否锁定
-func set_lock_level(btn: TextureButton,level_num:int):
+func set_lock_level(btn: TextureButton,level_num:int)->void:
 	btn.disabled = not GlobalConfig.unlocked_levels[level_num]  
 
 func _on_back_start_pressed() -> void:

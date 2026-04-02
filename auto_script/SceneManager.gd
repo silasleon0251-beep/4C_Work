@@ -44,7 +44,7 @@ func switch_scene(scene_path: String, keep_current: bool = false) -> void:
 ## @param target_scene_path: 要保留的目标场景路径
 ## @note 会跳过 Transition 节点、目标场景节点、非场景标记节点
 func _clean_old_scenes(target_scene_path: String) -> void:
-	var target_scene = scene_cache.get(target_scene_path, null)
+	var target_scene:Variant = scene_cache.get(target_scene_path, null)
 
 	# 遍历父节点下所有子节点，清理场景节点（保留非场景节点如UI/过渡节点）
 	for child in scene_parent.get_children():
@@ -56,7 +56,7 @@ func _clean_old_scenes(target_scene_path: String) -> void:
 		#print("销毁旧场景节点：", child.name)
 		child.queue_free()
 		# 从缓存中移除对应引用
-		for path in scene_cache:
+		for path:String in scene_cache:
 			if scene_cache[path] == child:
 				scene_cache.erase(path)
 				break
@@ -84,13 +84,13 @@ func _activate_scene(target_scene: Node) -> void:
 ## @warning 场景路径错误会返回空，需确保路径正确
 func _load_and_activate_scene(scene_path: String) -> void:
 	# 同步加载（如需异步，可改用 ResourceLoader.load_threaded_request）
-	var packed_scene = load(scene_path)
+	var packed_scene:Resource = load(scene_path)
 	if not packed_scene:
 		#print("场景加载失败：", scene_path)
 		return
 
 	# 实例化场景并标记为场景节点
-	var new_scene = packed_scene.instantiate()
+	var new_scene:Node = packed_scene.instantiate()
 	new_scene.set_meta("is_scene_node", true)  # 用meta避免修改节点属性
 
 	# 缓存场景实例
@@ -104,7 +104,7 @@ func _load_and_activate_scene(scene_path: String) -> void:
 ## @note 卸载后会从缓存移除并销毁场景节点
 func unload_scene(scene_path: String) -> void:
 	if scene_path in scene_cache:
-		var scene = scene_cache[scene_path]
+		var scene:Node = scene_cache[scene_path]
 		if scene.is_inside_tree():
 			scene.queue_free()
 		scene_cache.erase(scene_path)
@@ -113,7 +113,7 @@ func unload_scene(scene_path: String) -> void:
 ## 公开方法：获取当前场景路径
 ## @return: 当前激活场景的路径（空字符串表示无）
 func get_current_scene_path() -> String:
-	for path in scene_cache:
+	for path:String in scene_cache:
 		if scene_cache[path] == current_scene:
 			return path
 	return ""

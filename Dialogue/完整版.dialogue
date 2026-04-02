@@ -69,9 +69,9 @@ do GlobalConfig.unlock_level(2)
 
 ~ chapter2
 # 第二章 光乱时空，鹤畔逢仙
+do SignalManager.change_texture.emit("蓝天")
 系统: [#scene] [wave amp=25 freq=5][/wave] (罗盘突然爆发出刺眼的强光，地面剧烈晃动起来，主角和精灵的身影渐渐被强光包裹，看不清轮廓)
 系统: [#scene] [shake rate=20 level=10][/shake] (呼啸的强风在耳边刮过，发出“呼呼”的声响，耳边全是风声)
-do SignalManager.change_texture.emit("蓝天")
 主角: 喂喂喂！为什么会是这种开场啊！（主角和精灵被强光裹挟着，穿过层层厚重的云层，以极快的速度往下坠落）
 主角: 精灵！别睡了！再睡我们就要摔成肉饼了啊！
 精灵: 师父别念了别念了，[wave amp=25 freq=5][/wave] 我这就起床……[do SignalManager.show_character.emit("精灵")]（迷迷糊糊地缓缓睁开眼睛，还没反应过来）
@@ -178,6 +178,7 @@ do GlobalConfig.unlock_level(3)
 
 ~ chapter3
 # 第三章 诗仙引路，鹤楼初闻
+do SignalManager.change_texture.emit("朱门")
 主角: （惊得声音都发颤，下意识后退半步，手指着眼前之人，眼神里满是难以置信）您、您真的是李白？就是那个写“床前明月光”“飞流直下三千尺”的李太白？
 # 李白随机得意台词
 do SignalManager.show_character.emit("李白")
