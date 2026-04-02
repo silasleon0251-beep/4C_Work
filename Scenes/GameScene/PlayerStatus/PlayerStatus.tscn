@@ -1,0 +1,102 @@
+[gd_scene load_steps=3 format=3 uid="uid://6gt58m0xk4br"]
+
+[ext_resource type="Texture2D" uid="uid://da58vcrah3me1" path="res://resource/character/player/主角_悠闲_头像.png" id="1_20dul"]
+[ext_resource type="Script" uid="uid://d2g56ngw0br6q" path="res://Scenes/GameScene/PlayerStatus/player_status.gd" id="1_mws4g"]
+
+[node name="PlayerStatusUI" type="Control"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 450.0
+offset_bottom = 200.0
+script = ExtResource("1_mws4g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(420, 150)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0.74916667, 0.65, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 113.0
+offset_bottom = 92.0
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+color = Color(0.9047129, 0.910713, 0.98248655, 1)
+
+[node name="PlayerIcon" type="TextureRect" parent="HBoxContainer/ColorRect"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_20dul")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "情商"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EQ_Bar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+step = 1.0
+show_percentage = false
+
+[node name="EQ_value" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "智商"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IQ_Bar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+step = 1.0
+show_percentage = false
+
+[node name="IQ_value" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
