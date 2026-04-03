@@ -24,3 +24,15 @@ signal game_over
 # 参数：int => 关卡
 @warning_ignore("unused_signal")
 signal change_level(lv_num : int)
+
+# 角色UI显示
+@warning_ignore("unused_signal")
+signal show_player_status_UI
+
+# 角色UI隐藏
+@warning_ignore("unused_signal")
+signal hide_player_status_UI
+
+# 角色UI更新
+@warning_ignore("unused_signal")
+signal update_player_status_UI

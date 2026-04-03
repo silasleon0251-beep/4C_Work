@@ -24,20 +24,24 @@ do SignalManager.show_character.emit("精灵")
 主角: 我真不是故意打你的，主要是你突然冒出来，太吓人了。
 主角: 对了，你这罗盘是干什么用的？我其实略懂一点维修技巧，说不定……能帮你修好。（话音刚落，精灵警惕地打量了他一番）
 精灵: 给你看了也没用，你根本修不好的。（嘴上不情不愿，身体却很诚实，慢吞吞地把罗盘递了过去）
-# 不同修罗盘的方式，触发不同反馈
-主角: 
-- 使劲晃罗盘 [if not locals.tried_shake]
-    set locals.tried_shake = true
+
+# 不同修罗盘的方式，触发不同反馈 + 影响EQ/IQ
+- 使劲晃罗盘 [if not GlobalConfig.tried_shake]
+    set GlobalConfig.tried_shake = true
+	set GlobalConfig.IQ += 3
     这个啊……应该是没电了吧？（接过罗盘，在手里使劲晃了晃，动作幅度不小）
     罗盘: [#sound] 咔嚓——！齿轮缓缓转动，发出清脆的声响，罗盘表面泛起淡淡的微光。
-- 轻敲罗盘外壳 [if not locals.tried_tap]
-    set locals.tried_tap = true
+- 轻敲罗盘外壳 [if not GlobalConfig.tried_tap]
+    set GlobalConfig.tried_tap = true
+	set GlobalConfig.IQ += 5
     会不会是接触不良？（用指节轻轻敲了敲罗盘外壳，动作小心翼翼）
     罗盘: [#sound] 叮——！金属碰撞的轻响后，罗盘指针突然疯狂旋转，随即定在“唐”字上。
-- 对着罗盘吹口气 [if not locals.tried_blow]
-    set locals.tried_blow = true
+- 对着罗盘吹口气 [if not GlobalConfig.tried_blow]
+    set GlobalConfig.tried_blow = true
+	set GlobalConfig.EQ += 4
     说不定吹吹灰就好了？（对着罗盘缝隙使劲吹了口气，还蹭了蹭表面的灰尘）
     罗盘: [#sound] 呼——！气流卷动罗盘纹路，表面泛起暖黄色的光，隐隐能看到“江夏”二字。
+
 精灵: 啊！它、它已经启动了！你到底怎么搞的啊！（比刚才罗盘被弄坏时还要紧张，急得跳了起来）
 主角: 对、对不起啊！现在怎么办？还能取消启动吗？
 精灵: 不行了，这罗盘一旦开启，就再也停不下来了。
@@ -78,26 +82,29 @@ do SignalManager.change_texture.emit("蓝天")
 精灵: 啊啊啊啊啊啊啊——！我们怎么在天上啊！
 主角: 现在怎么办啊！感觉我们的故事还没开始，就要结束了！
 精灵: 别慌，没事的，我还会点法术。
-# 吐槽选项，触发不同精灵回应
-主角: 
-- 吐槽法术vs魔法 [if not locals.tried_complain]
-    set locals.tried_complain = true
+
+# 吐槽选项，触发不同精灵回应 + 影响EQ/IQ
+- 吐槽法术vs魔法 [if not GlobalConfig.tried_complain]
+    set GlobalConfig.tried_complain = true
+	set GlobalConfig.EQ -= 2
     主角: 你不是应该会魔法吗？法术和魔法不一样吧！
     精灵: 都什么时候了，还纠结这个！先保命要紧啊！
-- 催精灵施法 [if not locals.tried_urge]
-    set locals.tried_urge = true
+- 催精灵施法 [if not GlobalConfig.tried_urge]
+    set GlobalConfig.tried_urge = true
+	set GlobalConfig.EQ += 3
     主角: 管他法术还是魔法，快施法啊！我恐高！
     精灵: 催什么催！法术要念咒的！临兵斗者皆阵列前行……哎忘了下一句了！
-- 自暴自弃 [if not locals.tried_giveup]
-    set locals.tried_giveup = true
+- 自暴自弃 [if not GlobalConfig.tried_giveup]
+    set GlobalConfig.tried_giveup = true
+	set GlobalConfig.IQ -= 2
     主角: 要不我们直接摔下去吧？说不定穿越回现代了呢！
     精灵: 你疯了！古代的地面是泥地，摔下去只会断腿不会穿越！
 主角: 好好好！那你快救救我们啊！
 精灵: 我的能力没办法同时带着我们两个人一起减速，不过可以在我们快要接触地面的一瞬间，消除我们的下坠速度，这样就能平稳落地了。
 精灵: 现在唯一的希望就是，下面千万别在打仗。
+
 # 主角反应选项
-主角: 
-- 慌得一批
+- 惊慌失措
     主角: 打仗？！古代真的会这么容易打仗吗？我还没背《出师表》呢！
 - 强行镇定
     主角: 打仗？没事，我看过《三国演义》，装成老百姓应该能混过去！
@@ -139,18 +146,22 @@ do SignalManager.show_character.emit("李白")
 do SignalManager.hide_character.emit("李白")
 系统: [#scene] (李白循声而望，刚抬起头的一瞬间，就被从天而降的主角狠狠撞个满怀，两人都被撞得头晕目眩，眼冒金星，踉跄着后退了几步。)
 李白: 什么人？大庭广众之下，竟如此莽撞行事！
+
 # 甩锅/道歉选项
-主角: 
-- 甩锅精灵 [if not locals.blamed_elf]
-    set locals.blamed_elf = true
+- 甩锅精灵 [if not GlobalConfig.blamed_elf]
+    set GlobalConfig.blamed_elf = true
+	set GlobalConfig.EQ -= 3
     主角: 对不起对不起！实在对不起！都是他法术用不熟练，才把我们弄成这样的……哎，人呢？
 	李白: 大丈夫顶天立地，怎可随意诬陷他人？自始至终，此处便只有你一人而已。
-- 疯狂道歉 [if not locals.apologized_much]
-    set locals.apologized_much = true
+- 疯狂道歉 [if not GlobalConfig.apologized_much]
+    set GlobalConfig.apologized_much = true
+	set GlobalConfig.EQ += 4
     主角: 对不起对不起对不起！我不是故意的！我从天上掉下来的！
-- 试图解释 [if not locals.tried_explain]
-    set locals.tried_explain = true
+- 试图解释 [if not GlobalConfig.tried_explain]
+    set GlobalConfig.tried_explain = true
+	set GlobalConfig.IQ += 2
     主角: 抱歉抱歉！我在进行时空旅行，结果罗盘失控了……你信吗？
+
 do SignalManager.show_character.emit("精灵")
 精灵: 这里你先应付一下，我这就去拿数据，拿完数据我们就能走了！（声音轻飘飘的，像是从很远的地方传来，越来越淡）
 精灵: 不用找我了，我已经走很远啦！
@@ -166,7 +177,8 @@ do SignalManager.show_character.emit("李白")
 - 小白龙
 	主角: 小白龙？你是小白龙吗，西天取经的那个？
 	李白: （先是挑眉错愕，随即指着自己，哭笑不得，语气里带着几分戏谑与无奈）小白龙？小友说笑了！我乃是人间诗仙李白，可不是那西海龙王之子、随唐僧取经的小白龙！你这小友，怕是被撞得晕了头，竟把我认作取经之人，这般说辞，倒比我写的诗还要新奇几分呢！
-- 诗仙！ [if locals.tried_shake] 
+- 诗仙！ [if GlobalConfig.tried_shake] 
+	GlobalConfig.EQ += 5
 	您就是那个斗酒诗百篇的诗仙李白？！ 
 	# 隐藏彩蛋：触发更有趣的互动
 	李白: （眼睛一亮，拍腿大笑）斗酒诗百篇？小友竟知我这等趣事！看来你不是寻常之人啊！莫非是天上的仙童，特意来与我饮酒论诗？
@@ -186,16 +198,19 @@ do SignalManager.show_character.emit("李白")
 % 李白: （挑眉一笑，语气得意）不错！正是我李白！小友竟能认出我，看来我的诗，已是家喻户晓了！
 % 李白: （负手而立，意气风发）正是！除了我李白，还有谁能写出“举杯邀明月，对影成三人”这般佳句？
 # 请求选项
-- 恭敬求见 [if not locals.respectful]
-    set locals.respectful = true
+- 恭敬求见 [if not GlobalConfig.respectful]
+    set GlobalConfig.respectful = true
+	set GlobalConfig.EQ += 5
     主角: （连忙拱手，语气恭敬又激动）久仰大名！我从小就背您的诗，没想到有一天能真的见到您本人，这也太不可思议了！（说着，又想起精灵的话，眼神微微黯淡，随即又亮了起来）对了李大人，我此次前来，其实是想来看看这江夏城的黄鹤楼，早就听闻它临江而建，气势恢宏，不知您可否为我指点一二？
 	李白: 哦？你也知晓这黄鹤楼？倒是与我投缘。
-- 追星模式 [if not locals.fan_mode]
-    set locals.fan_mode = true
+- 追星模式 [if not GlobalConfig.fan_mode]
+    set GlobalConfig.fan_mode = true
+	set GlobalConfig.EQ += 4
     主角: （星星眼）您就是我的偶像啊！《将进酒》我能倒背如流！能不能给我签个名？不对，古代没有签名……题个诗吧！
 	李白: （朗声大笑，拍了拍主角的肩头）哈哈哈！倒是头一回遇到这般直率的小友！有趣，实在有趣！
-- 假装淡定 [if not locals.calm]
-    set locals.calm = true
+- 假装淡定 [if not GlobalConfig.calm]
+    set GlobalConfig.calm = true
+	GlobalConfig.IQ += 2
     主角: （强装淡定，实则手心冒汗）原来是李大人，久仰久仰。听闻您要登黄鹤楼，不知可否带晚辈一同前往？
 	李白: （眼中闪过一丝玩味，语气爽朗）哦？你也想登楼？
 李白: （闻言，眼中闪过一丝笑意，抬手拍了拍主角的肩膀）我此次来江夏，除了求见府君，便是为了登楼一游，览尽长江盛景。既然你也有意，那便与我一同前往便是，正好我也能与你说说这黄鹤楼的过往。
@@ -208,14 +223,17 @@ do SignalManager.show_character.emit("李白")
 主角: （听得入了迷，眼中满是向往）哇！原来黄鹤楼有这么悠久的历史，还有这么多文人墨客在此留下足迹，难怪它会成为天下名楼！
 李白: （哈哈一笑，抬手示意主角跟上）话不多说，今日天色尚早，我们这就动身前往黄鹤楼，亲自去感受一番它的气势与风情。你放心，有我李白在，定让你此行不虚！
 # 催更/期待选项
-- 催作诗 [if not locals.urge_poem]
-    set locals.urge_poem = true
+- 催作诗 [if not GlobalConfig.urge_poem]
+    set GlobalConfig.urge_poem = true
+	set GlobalConfig.IQ += 2
     主角: （连忙跟上李白的脚步，语气雀跃）好！我们现在就去！对了李大人，您一会儿会不会在黄鹤楼上作诗啊？我真想亲眼看看您作诗的样子！
-- 问八卦 [if not locals.ask_gossip]
-    set locals.ask_gossip = true
+- 问八卦 [if not GlobalConfig.ask_gossip]
+    set GlobalConfig.ask_gossip = true
+	set GlobalConfig.EQ += 3
     主角: （小跑跟上）李大人！您和杜甫关系好不好啊？他写的“语不惊人死不休”是不是说您？
-- 求攻略 [if not locals.ask_strategy]
-    set locals.ask_strategy = true
+- 求攻略 [if not GlobalConfig.ask_strategy]
+    set GlobalConfig.ask_strategy = true
+	set GlobalConfig.IQ += 3
     主角: （好奇追问）李大人！您写诗有没有什么技巧啊？我作文总写跑题……
 李白: （回头挑眉一笑，语气洒脱）那可说不定，若是登楼之后，心有所感，自然会吟上几句。到时候，便让你这小友，做我第一个听众！
 系统: [#scene] (两人并肩而行，朝着黄鹤楼的方向走去，江风拂过，吹动两人的衣袖，远处的黄鹤楼檐角愈发清晰，空气中仿佛都弥漫着诗酒的清香。精灵的声音偶尔从远处飘来，带着几分急促)
@@ -228,14 +246,17 @@ do SignalManager.show_character.emit("精灵")
 do SignalManager.show_character.emit("李白")
 李白: （疑惑地看向主角）小友，你在与何人说话？为何我未曾听见有人回应？
 # 新增掩饰方式选项
-- 假装走神 [if not locals.pretend_distracted]
-    set locals.pretend_distracted = true
+- 假装走神 [if not GlobalConfig.pretend_distracted]
+    set GlobalConfig.pretend_distracted = true
+	set GlobalConfig.EQ += 2
     主角: （愣了一下，连忙掩饰道）没、没什么，就是我刚才有点走神，自言自语罢了。李大人，我们快走吧，我都迫不及待想登上黄鹤楼了！
-- 谎称幻听 [if not locals.lied_hallucination]
-    set locals.lied_hallucination = true
+- 谎称幻听 [if not GlobalConfig.lied_hallucination]
+    set GlobalConfig.lied_hallucination = true
+	set GlobalConfig.EQ += 2
     主角: （挠头尬笑）可能是我刚摔下来幻听了吧！李大人别在意，我们快走！
-- 瞎编借口 [if not locals.made_up_excuse]
-    set locals.made_up_excuse = true
+- 瞎编借口 [if not GlobalConfig.made_up_excuse]
+    set GlobalConfig.made_up_excuse = true
+	set GlobalConfig.IQ += 2
     主角: （眼神飘忽）是、是江风太大了，吹得我耳鸣！我们快登楼吧！
 李白: （笑了笑，并未多问）好，走吧！
 do SignalManager.hide_character.emit("李白")
@@ -265,14 +286,17 @@ do SignalManager.show_character.emit("工匠")
 % 年轻工匠: （指着飞檐，语气带着自豪）每一个鹤纹都是我们师兄弟一刀一刀刻出来的，光是这些纹样，二十个兄弟足足雕了半年！我现在雕鹤纹，师父都夸我有模有样了！
 年轻工匠: （继续说道）你看这飞檐，每一个翘角都雕刻着仙鹤图案，栩栩如生，寓意着“黄鹤归来”。楼内的雕梁画栋，皆是名家手笔，描绘着山川河流、文人雅士，每一处细节，都藏着匠心。我们这些小辈，跟着师父们每隔几年便修缮一次，就是想把这手艺传下去，让这天下名楼，永远立在长江边上！
 # 主角回应选项
-- 夸工匠 [if not locals.praised_craftsman]
-    set locals.praised_craftsman = true
+- 夸工匠 [if not GlobalConfig.praised_craftsman]
+    set GlobalConfig.praised_craftsman = true
+	set GlobalConfig.EQ += 6
     主角: （听得连连点头，眼中满是敬佩）太厉害了！不用一钉一铆就能建成这么壮观的楼，你这么年轻就有这手艺，真是太了不起了！这就是古代建筑的智慧啊！
-- 问细节 [if not locals.asked_detail]
-    set locals.asked_detail = true
+- 问细节 [if not GlobalConfig.asked_detail]
+    set GlobalConfig.asked_detail = true
+	set GlobalConfig.IQ += 4
     主角: （好奇追问）小哥！那榫卯结构是怎么扣合的？能不能给我演示一下？
-- 对比现代 [if not locals.compared_modern]
-    set locals.compared_modern = true
+- 对比现代 [if not GlobalConfig.compared_modern]
+    set GlobalConfig.compared_modern = true
+	set GlobalConfig.IQ += 3
     主角: （喃喃自语）要是现代建筑也这么用心，就不会有豆腐渣工程了……
 李白: （点头赞同）是啊，匠心筑魂，方能成就不朽。这些年轻工匠们，肯沉下心学手艺，用自己的双手守护这天下闻名的黄鹤楼，他们的努力，值得被世人铭记。
 年轻工匠: （挠了挠头，笑着摆手）李大人过奖了，这都是我们该做的。二位客官，修缮的地方已经清理好了，你们可以登楼了。楼上备了茶水酒水，二位只管登楼赏景，吟诗作赋！
@@ -285,14 +309,17 @@ do SignalManager.change_texture.emit("内部")
 % 李白: （拎起酒壶，仰头喝了一口）江风配酒，鹤楼作伴，人生得意须尽欢！小友，陪我喝一杯！
 % 李白: （指着江面的白帆）孤帆远影碧空尽……此情此景，当浮一大白！小友，饮酒！
 # 拒酒理由选项
-- 未成年 [if not locals.said_underage]
-    set locals.said_underage = true
+- 未成年 [if not GlobalConfig.said_underage]
+    set GlobalConfig.said_underage = true
+	set GlobalConfig.EQ += 3
     主角: （连忙摆手，语气有些不好意思）李大人抱歉，我还未成年，不能饮酒。我就以茶代酒，陪您喝一杯吧！
-- 不会喝 [if not locals.said_cant_drink]
-    set locals.said_cant_drink = true
+- 不会喝 [if not GlobalConfig.said_cant_drink]
+    set GlobalConfig.said_cant_drink = true
+	set GlobalConfig.EQ += 2
     主角: （尬笑）李大人，我酒量差，一杯就倒，还是以茶代酒吧！
-- 怕误事 [if not locals.said_afraid_mess]
-    set locals.said_afraid_mess = true
+- 怕误事 [if not GlobalConfig.said_afraid_mess]
+    set GlobalConfig.said_afraid_mess = true
+	set GlobalConfig.IQ += 2
     主角: （指了指外面）我还要帮精灵收集数据呢，喝酒误事，我喝茶就好！
 李白: （愣了一下，随即哈哈大笑）哈哈哈！无妨无妨！未成年便不饮酒，这般自律，难能可贵！来，以茶代酒，我们共饮一杯，不负这江景，不负这鹤楼！
 系统: [#scene] (主角拿起茶杯，与李白的酒杯轻轻相碰，两人一同饮下。李白放下酒杯，走到桌前，拿起毛笔，蘸了蘸墨水，目光望向窗外，眼中满是灵感。)
@@ -325,28 +352,34 @@ do SignalManager.show_character.emit("李白")
 % 李白: （望着夜色中茫茫的长江，语气怅然又洒脱）天下无不散之筵席，今夜一别，不知何日再见。这诗，便作今夜之念吧！
 
 # 主角不舍回应
-- 舍不得 [if not locals.said_reluctant]
-    set locals.said_reluctant = true
+- 舍不得 [if not GlobalConfig.said_reluctant]
+    set GlobalConfig.said_reluctant = true
+	set GlobalConfig.EQ += 4
     主角: （闻言，心中泛起一丝不舍，语气低落，望着楼下的灯火）啊？您明天就要走了吗？我还想再陪您在这鹤楼阳台上，多赏几回夜景，多听您作几首诗呢。
-- 求后续 [if not locals.asked_future]
-    set locals.asked_future = true
+- 求后续 [if not GlobalConfig.asked_future]
+    set GlobalConfig.asked_future = true
+	set GlobalConfig.IQ += 3
     主角: （连忙追问，指尖碰了碰微凉的栏杆）李大人！您去扬州会写新的诗吗？能不能先告诉我几句？就算是今夜的小约定也好！
-- 要联系方式 [if not locals.asked_contact]
-    set locals.asked_contact = true
+- 要联系方式 [if not GlobalConfig.asked_contact]
+    set GlobalConfig.asked_contact = true
+	set GlobalConfig.EQ += 3
     主角: （挠头，望着夜色中的李白）李大人！您走了之后，我怎么才能再读到您的新诗啊？有没有什么诗友会，或是常去的酒馆，让我记下来？
 李白: （抬手拍了拍主角的肩膀，语气温和，江风吹起他的衣袖）人生在世，聚散随缘。虽不能再同赏这鹤楼夜色，但今夜之缘，我李白记在心中。你这小友，从天而降，天真烂漫，倒是给我这江夏之行，添了不少乐趣。
 do SignalManager.show_character.emit("精灵")
 精灵: （从阳台的阴影处走了进来，语气急促，拉了拉主角的衣袖）好了好了，你们别煽情了！数据已经收集齐了，罗盘的能量也快耗尽了，我们必须尽快回去，不然就被困在这唐代的夜晚了！
 do SignalManager.show_character.emit("李白")
 # 主角告别选项
-- 正式告别 [if not locals.formal_farewell]
-    set locals.formal_farewell = true
+- 正式告别 [if not GlobalConfig.formal_farewell]
+    set GlobalConfig.formal_farewell = true
+	set GlobalConfig.EQ += 5
     主角: （转头看向精灵，又看了看夜色中含笑的李白，眼中满是不舍）我知道了。李大人，今夜能与您相识，能在这鹤楼阳台共赏长江夜色，是我这辈子最难忘的经历。谢谢您的诗，谢谢您的陪伴。
-- 约定再见 [if not locals.promised_meet]
-    set locals.promised_meet = true
+- 约定再见 [if not GlobalConfig.promised_meet]
+    set GlobalConfig.promised_meet = true
+	set GlobalConfig.EQ += 4
     主角: （眼眶泛红，望着江面上的月影）李大人！今夜一别，我一定会记住您的诗！等我回到现代，我会告诉所有人，我在唐代的黄鹤楼上，见过真正的诗仙，与您共赏过长江的夜色！
-- 索要签名 [if not locals.asked_signature]
-    set locals.asked_signature = true
+- 索要签名 [if not GlobalConfig.asked_signature]
+    set GlobalConfig.asked_signature = true
+	set GlobalConfig.IQ += 3
     主角: （指着诗卷，借着灯笼的光看向李白）李大人！能不能在这诗卷上再写个名字？就着这鹤楼的夜色题写，我要带回现代当传家宝！
 李白: （笑着点头，从怀中取出一方玉佩，玉佩上沾着淡淡的酒香，递给主角）小友不必伤感。这方玉佩，是我随身之物，今夜便赠你，当作纪念。日后若是想起今夜的鹤楼月色，便看看这玉佩，就当我们未曾分别。
 主角: （双手接过玉佩，小心翼翼地揣在怀里，指尖触到微凉的玉佩，眼眶微微泛红）多谢李大人！我一定会好好珍藏这方玉佩，永远记住您，记住今夜的黄鹤楼，记住这长江的月色。
@@ -371,14 +404,17 @@ do SignalManager.show_character.emit("精灵")
 % 精灵: （瘫坐在地上，大口喘着气，揉了揉眼睛）终于回来了！累死我了！数据已经收集齐了，只要把数据导入罗盘，就能复原黄鹤楼了。差点就困在唐代的黑夜里回不来了！
 % 精灵: （揉着腰，抱怨道，指着窗外的夜色）下次再也不带你去了！光顾着和李白在阳台赏月聊天，我差点被巡逻的士兵当成奸细，躲在暗处憋了半宿！
 % 精灵: （把玩着罗盘，罗盘在灯光下闪着光，得意道）还好我聪明，把李白对着夜色作的诗也录下来了，回去能跟师父邀功了！
-- 感谢精灵 [if not locals.thanked_elf]
-    set locals.thanked_elf = true
+- 感谢精灵 [if not GlobalConfig.thanked_elf]
+    set GlobalConfig.thanked_elf = true
+	set GlobalConfig.EQ += 5
     主角: （抚摸着怀中的玉佩，玉佩还带着夜晚江风的凉意，脸上带着笑意，语气温柔）是啊，我们回来了。谢谢你，让我能见到李白，能登上夜晚的黄鹤楼，赏到那样美的月色。
-- 调侃精灵 [if not locals.teased_elf]
-    set locals.teased_elf = true
+- 调侃精灵 [if not GlobalConfig.teased_elf]
+    set GlobalConfig.teased_elf = true
+	set GlobalConfig.EQ += 3
     主角: （挑眉，笑着看向精灵）你刚才不还偷偷躲在阳台阴影里，看李白对着月色作诗吗？嘴硬心软！
-- 关心罗盘 [if not locals.cared_compass]
-    set locals.cared_compass = true
+- 关心罗盘 [if not GlobalConfig.cared_compass]
+    set GlobalConfig.cared_compass = true
+	set GlobalConfig.IQ += 4
     主角: （指着罗盘，眼神期待）那快复原黄鹤楼吧！我还想晚上去现代的黄鹤楼，看看和唐代那晚一样的月色呢！
 精灵: （翻了个白眼，语气傲娇）哼，我才不是为了让你见李白赏月色呢！我只是为了完成师父交代的任务！不过，这次的时空旅行，好像也不算太无聊。
 do SignalManager.hide_character.emit("精灵")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5phtt4etcd5e"]
+[gd_scene load_steps=9 format=3 uid="uid://c5phtt4etcd5e"]
 
 [ext_resource type="Script" uid="uid://dhgshjv802n6v" path="res://Scenes/GameScene/level_scene_one/game_1.gd" id="1_0r4sq"]
 [ext_resource type="PackedScene" uid="uid://dy255fm8pjq07" path="res://Scenes/GameScene/level_scene_one/game_ui.tscn" id="2_2fyrp"]
 [ext_resource type="Texture2D" uid="uid://b86hbcrixv8pu" path="res://resource/UI/章节/0_0010_第一章默认.png" id="2_6xvof"]
+[ext_resource type="PackedScene" uid="uid://6gt58m0xk4br" path="res://Scenes/GameScene/PlayerStatus/PlayerStatus.tscn" id="2_57d54"]
 [ext_resource type="Texture2D" uid="uid://cjsdr685amhgg" path="res://resource/UI/按钮背景.png" id="2_a5ruy"]
 [ext_resource type="Script" uid="uid://dey6y6q3tbqim" path="res://Scenes/GameScene/level_scene_one/beginning.gd" id="2_krmit"]
 [ext_resource type="Texture2D" uid="uid://6u0r5tqlxoec" path="res://resource/UI/章节/0_0011_第一章选中.png" id="3_a5ruy"]
@@ -62,6 +63,8 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="PlayerStatusUI" parent="BgAndChar" instance=ExtResource("2_57d54")]
 
 [node name="GameUI" parent="." instance=ExtResource("2_2fyrp")]
 
