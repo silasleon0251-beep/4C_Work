@@ -33,6 +33,11 @@ var IQ : int:
 		IQ = clamp(value, 0, 100)  # 限制0-100
 		SignalManager.update_player_status_UI.emit()
 
+var Luck : int:
+	set(value):
+		Luck = clamp(value, 0, 100)  # 限制0-100
+		SignalManager.update_player_status_UI.emit()
+
 # 数据储存位置
 const CONFIG_PATH: String = "user://basic_settings.cfg"
 
@@ -105,8 +110,7 @@ func _ready()->void:
 	
 	EQ = 50
 	IQ = 70
-
-	
+	Luck = 50
 	
 	#加载数据
 	load_config()

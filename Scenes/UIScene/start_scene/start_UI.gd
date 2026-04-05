@@ -5,11 +5,24 @@ var is_exiting: bool = false
 
 @onready var texture_rect: TextureRect = $TextureRect
 
+@onready var exit_confirm_panel: ColorRect = $ExitConfirmPanel
+@onready var confirm_exit_btn: TextureButton = $ExitConfirmPanel/ConfirmExitBtn
+@onready var cancel_exit_btn: TextureButton = $ExitConfirmPanel/CancelExitBtn
+
+@onready var head_line: Control = $HeadLine/HeadLine
+@onready var v_box_container: VBoxContainer = $VBoxContainer
+
+
 
 func _ready() -> void:
 	print(self.name ,"    ready 运行")
 	set_meta("is_scene_node", true)  # 标记为场景节点
 	texture_rect.visible = false
+	
+	# 确认退出按钮绑定
+	confirm_exit_btn.pressed.connect(_do_real_exit)
+	cancel_exit_btn.pressed.connect(_cancel_exit)
+	
 
 func _exit_tree() -> void:
 	print(self.name, "   Destruction")
@@ -24,41 +37,56 @@ func _on_set_but_pressed() -> void:
 func _on_collect_but_pressed() -> void:
 	pass # Replace with function body.
 
-## 退出游戏
+# 退出游戏
+
+# 退出按钮点击 → 只弹确认框，不直接退出
 func _on_exit_pressed() -> void:
+	show_exit_confirm()
+
+# 显示退出确认弹窗
+func show_exit_confirm() -> void:
+	exit_confirm_panel.visible = true
+	
+	head_line.visible = false
+	v_box_container.visible = false
+
+# 取消退出
+func _cancel_exit() -> void:
+	exit_confirm_panel.visible = false
+	
+	head_line.visible = true
+	v_box_container.visible = true
+
+# 真正执行退出游戏（确认后才跑）
+func _do_real_exit() -> void:
 	if is_exiting:
-		return  # 防止重复点击触发多次退出逻辑
+		return
 	is_exiting = true
 	
-	#print("开始退出游戏，释放内存中...")
-	
-	# 1. 清理SceneManager的场景缓存（释放所有缓存的场景实例）
+	# 1. 清理SceneManager的场景缓存
 	if SceneManager:
-		# 遍历缓存，销毁所有场景节点并清空缓存
 		var scene_paths:Array = SceneManager.scene_cache.keys()
 		for path:String in scene_paths:
 			var scene:Node = SceneManager.scene_cache[path]
 			if scene and scene.is_inside_tree():
-				scene.queue_free()  # 销毁场景节点
-		SceneManager.scene_cache.clear()  # 清空缓存字典
-		SceneManager.current_scene = null  # 清空当前场景引用
+				scene.queue_free()
+		SceneManager.scene_cache.clear()
+		SceneManager.current_scene = null
 	
-	 # 2. 安全清理节点（只清理"场景节点"，不销毁根节点核心组件）
+	# 2. 安全清理节点
 	var root:Node = get_tree().root
 	for child in root.get_children():
-		# 只销毁场景节点和非核心UI，保留自动加载的SceneManager
 		if child.name != "SceneManager" and (child.has_meta("is_scene_node") or child is Control):
 			child.queue_free()
 	
-	# 3. 延迟一小段时间（确保内存释放完成），再退出游戏
+	# 退出游戏
 	get_tree().quit()
 
-# 监听窗口关闭事件（点击右上角X也触发内存释放）
+# 监听窗口关闭事件（点击右上角X → 弹确认框）
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		_on_exit_pressed()
-	pass # Replace with function body.
-
+		# 拦截系统关闭，改为显示确认框
+		show_exit_confirm()
 
 func _on_easter_egg_pressed() -> void:
 	texture_rect.visible = true

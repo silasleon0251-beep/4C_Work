@@ -65,6 +65,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="PlayerStatusUI" parent="BgAndChar" instance=ExtResource("2_57d54")]
+visible = false
 
 [node name="GameUI" parent="." instance=ExtResource("2_2fyrp")]
 

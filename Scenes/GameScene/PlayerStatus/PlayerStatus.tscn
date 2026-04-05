@@ -48,7 +48,7 @@ stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
@@ -98,6 +98,34 @@ step = 1.0
 show_percentage = false
 
 [node name="IQ_value" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2/IQ_Bar"]
+layout_mode = 0
+offset_left = 68.0
+offset_right = 82.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "幸运"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Luck_Bar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+step = 1.0
+show_percentage = false
+
+[node name="Luck_value" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer3/Luck_Bar"]
 layout_mode = 0
 offset_left = 68.0
 offset_right = 82.0

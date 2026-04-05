@@ -8,6 +8,7 @@ do SignalManager.change_texture.emit("新闻")
 新闻: 紧急通知，黄鹤楼因不明原因突然消失，现场已被全面封锁，相关部门正紧急介入调查……
 主角: 哎哎哎！什么情况啊这是！（紧盯着手机屏幕，满脸惊愕，手机界面弹出密密麻麻的群聊消息——全员都在炸开锅讨论黄鹤楼消失的怪事）
 do SignalManager.change_texture.emit("卧室")
+do SignalManager.show_player_status_UI.emit()
 主角: 怎么……怎么跟我之前看的一本书一模一样啊！（慌忙放下手机，快步冲到书架前，急切翻找起来）
 未知声音: 哈哈，终于让我找到你了！（话音刚落，房间瞬间陷入漆黑，光线彻底消失）
 do SignalManager.change_texture.emit("黑背景")
