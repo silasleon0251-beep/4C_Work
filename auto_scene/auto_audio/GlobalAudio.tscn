@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgsg7eturqybj"]
+
+[ext_resource type="Script" uid="uid://bcg04vh521c1s" path="res://auto_scene/auto_audio/global_audio.gd" id="1_u13ir"]
+[ext_resource type="AudioStream" uid="uid://1k74sw2l838x" path="res://resource/sound_effect/保存音效.MP3" id="2_owvix"]
+[ext_resource type="AudioStream" uid="uid://6c2sbly7r6vk" path="res://resource/sound_effect/测试音频.MP3" id="3_xo5d3"]
+
+[node name="GlobalAudio" type="Node2D"]
+script = ExtResource("1_u13ir")
+sound_click = ExtResource("2_owvix")
+bgm_main = ExtResource("3_xo5d3")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]

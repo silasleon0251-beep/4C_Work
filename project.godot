@@ -29,6 +29,7 @@ GlobalBrightness="*res://auto_scene/Global_brightness.tscn"
 GlobalData="*res://auto_script/global_data.gd"
 SwitchTextures="*res://auto_script/switch_textures.gd"
 GameManager="*res://auto_script/game_manager.gd"
+GlobalAudio="*res://auto_scene/auto_audio/GlobalAudio.tscn"
 
 [debug]
 
@@ -60,6 +61,7 @@ folder_colors={
 "res://Scenes/": "blue",
 "res://addons/": "gray",
 "res://auto_scene/": "red",
+"res://auto_scene/auto_audio/": "orange",
 "res://auto_script/": "red",
 "res://resource/": "green"
 }

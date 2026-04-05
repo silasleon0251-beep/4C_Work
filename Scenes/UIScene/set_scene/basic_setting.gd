@@ -30,7 +30,7 @@ const VOLUME_OFFSET = -40
 ## 功能：
 ## 1. 打印就绪日志
 ## 2. 初始化所有音量滑块（主音量、BGM、音效）
-func _ready():
+func _ready()->void:
 	print(self.name ,"ready 运行")
 	
 	# 初始化全局临时音量值（关键：启动时先把当前值存入全局临时变量）
@@ -315,3 +315,8 @@ func reset_slider():
 	init_slider(main_volume_slider, VolumeType.main, "主音量",true)
 	init_slider(bgm_volume_slider, VolumeType.bgm, "背景音",true)
 	init_slider(sound_volume_slider, VolumeType.sound, "音效",true)
+
+
+func _on_test_button_pressed() -> void:
+	GlobalAudio.play_click()
+	pass # Replace with function body.
