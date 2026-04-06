@@ -12,6 +12,13 @@ extends Control
 @onready var iq_value: Label = $HBoxContainer/VBoxContainer/HBoxContainer2/IQ_Bar/IQ_value
 @onready var luck_value: Label = $HBoxContainer/VBoxContainer/HBoxContainer3/Luck_Bar/Luck_value
 
+@onready var feed_back: TextureRect = $FeedBack
+const SIGN = "res://resource/UI/标记/注意.png"
+
+
+
+
+
 # 动画时长（秒）
 const ANIM_DURATION: float = 0.2
 
@@ -80,6 +87,29 @@ func _hide_player_status_UI()->void:
 # 更新数值
 func _update_player_status_UI()->void:
 	# 全局数据会改变,给脚本的成员属性赋值就能更新
+	GlobalAudio.play_select()
+	blink_node(feed_back)
 	EQ = GlobalConfig.EQ
 	IQ = GlobalConfig.IQ
 	Luck = GlobalConfig.Luck
+
+
+# 闪动动画：透明度 0 ↔ 1 循环
+# node: 要闪动的节点
+# blink_count: 闪动次数
+# blink_interval: 每次闪的间隔时间（秒）
+func blink_node(node: Node, blink_count: int = 3, blink_interval: float = 0.1) -> void:
+	# 保存原始透明度
+	var original_modulate:Color = node.modulate
+	
+	# 循环闪动
+	for i in range(blink_count):
+		# 隐藏
+		node.modulate.a = 0.0
+		await get_tree().create_timer(blink_interval).timeout
+		# 显示
+		node.modulate.a = 1.0
+		await get_tree().create_timer(blink_interval).timeout
+	
+	# 恢复原始状态
+	node.modulate = original_modulate

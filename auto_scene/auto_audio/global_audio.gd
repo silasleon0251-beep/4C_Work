@@ -6,7 +6,9 @@ extends Node
 @export var audio_hover: AudioStream     # 悬停
 @export var audio_cancel: AudioStream    # 取消
 
-@export var bgm_dict: Dictionary = {}
+var bgm_dict: Dictionary = {
+	"目录":"res://resource/sound_effect/目录.mp3"
+}
 
 @export var test_sound: AudioStream # 测试音效
 
@@ -104,8 +106,10 @@ func play_bgm(bgm_key: String, duration: float = -1.0)->void:
 	if not bgm_dict.has(bgm_key):
 		print("BGM 不存在: ", bgm_key)
 		return
+	
+	var path:String = bgm_dict[bgm_key]
+	var audio: AudioStream = load(path) as AudioStream
 
-	var audio: AudioStream = bgm_dict[bgm_key]
 	if not audio:
 		return
 
@@ -120,8 +124,10 @@ func play_bgm(bgm_key: String, duration: float = -1.0)->void:
 		bgm_timer.start()
 
 func stop_bgm()->void:
-	bgm_timer.stop()
-	bgm_player.stop()
+	if bgm_timer:
+		bgm_timer.stop()
+	if bgm_player:
+		bgm_player.stop()
 
 # ==============================
 # 设置界面测试音效

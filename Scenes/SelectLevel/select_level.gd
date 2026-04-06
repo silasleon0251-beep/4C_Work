@@ -4,6 +4,10 @@ extends Control
 func _ready()->void:
 	# 初始化：刷新所有关卡按钮状态
 	refresh_all_level_buttons()
+	
+
+func _exit_tree() -> void:
+	GlobalAudio.stop_bgm()
 
 func refresh_all_level_buttons() -> void:
 	# 自动获取所有组名为 Level 的按钮
@@ -31,27 +35,27 @@ func _on_level_clicked(button:TextureButton)->void:
 	load_level(GlobalData.L1_SCENE_PATH)
 	
 	#TODO 测试调用 正式版中不会开启 TODO
-	match button.name:
-		"LevelOne":
-			#load_level(GlobalData.L1_SCENE_PATH)
-			GlobalConfig.unlock_level(2)
-			#print("点击了: " + button.name)
-		"LevelTwo":
-			#load_level(GlobalData.L2_SCENE_PATH)
-			GlobalConfig.unlock_level(3)
-			#print("点击了: " + button.name)
-		"LevelThree":
-			#load_level(GlobalData.L3_SCENE_PATH)
-			GlobalConfig.unlock_level(4)
-			#print("点击了: " + button.name)
-		"LevelFour":
-			#load_level(GlobalData.L4_SCENE_PATH)
-			GlobalConfig.unlock_level(5)
-			#print("点击了: " + button.name)
-		"LevelFive":
-			#load_level(GlobalData.L5_SCENE_PATH)
-			GlobalConfig.reset_all_levels()
-			#print("点击了: " + button.name)
+	#match button.name:
+		#"LevelOne":
+			##load_level(GlobalData.L1_SCENE_PATH)
+			#GlobalConfig.unlock_level(2)
+			##print("点击了: " + button.name)
+		#"LevelTwo":
+			##load_level(GlobalData.L2_SCENE_PATH)
+			#GlobalConfig.unlock_level(3)
+			##print("点击了: " + button.name)
+		#"LevelThree":
+			##load_level(GlobalData.L3_SCENE_PATH)
+			#GlobalConfig.unlock_level(4)
+			##print("点击了: " + button.name)
+		#"LevelFour":
+			##load_level(GlobalData.L4_SCENE_PATH)
+			#GlobalConfig.unlock_level(5)
+			##print("点击了: " + button.name)
+		#"LevelFive":
+			##load_level(GlobalData.L5_SCENE_PATH)
+			#GlobalConfig.reset_all_levels()
+			##print("点击了: " + button.name)
 	# 更新关卡状态
 	refresh_all_level_buttons()
 

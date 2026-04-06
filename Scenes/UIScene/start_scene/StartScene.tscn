@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c4lbph4em1oiq" path="res://resource/UI/开始界面/_0000_退出.png" id="8_m363r"]
 [ext_resource type="Script" uid="uid://ch0nuabrgwoft" path="res://Scenes/UIScene/start_scene/change_sign.gd" id="9_2jl2c"]
 [ext_resource type="Texture2D" uid="uid://dwhh0difsvk8q" path="res://resource/UI/开始界面/箭头.png" id="9_05b4y"]
-[ext_resource type="Texture2D" uid="uid://bwqsyhmdvbhkf" path="res://resource/Ver/游戏开发版本记录.png" id="12_1q0uw"]
+[ext_resource type="Texture2D" uid="uid://dg1v8meoedsiw" path="res://resource/Ver/游戏开发版本记录2.png" id="11_2jl2c"]
 [ext_resource type="Texture2D" uid="uid://cwatnsv6k0lq" path="res://resource/UI/退出/_0004_是否退出游戏.png" id="13_m363r"]
 [ext_resource type="Texture2D" uid="uid://bq5bq3x2nor86" path="res://resource/UI/退出/_0003_是默认.png" id="14_05b4y"]
 [ext_resource type="Texture2D" uid="uid://10n8ce8fdmsc" path="res://resource/UI/退出/_0002_是选中.png" id="15_b8smd"]
@@ -29,7 +29,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-26.7, 0)]
+"values": [Vector2(13.9999695, -2)]
 }
 
 [sub_resource type="Animation" id="Animation_h3jl7"]
@@ -46,7 +46,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(14.25, -3), Vector2(25.25, -3)]
+"values": [Vector2(7.465, -2), Vector2(17.23, -2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m363r"]
@@ -243,9 +243,10 @@ script = ExtResource("9_2jl2c")
 visible = false
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_left = -26.7
-offset_right = 53.30006
-offset_bottom = 80.0
+offset_left = 14.0109215
+offset_top = -2.0
+offset_right = 94.01099
+offset_bottom = 78.0
 texture = ExtResource("9_05b4y")
 expand_mode = 1
 stretch_mode = 5
@@ -296,7 +297,7 @@ offset_left = 45.0
 offset_top = 166.0
 offset_right = 1875.0
 offset_bottom = 966.0
-texture = ExtResource("12_1q0uw")
+texture = ExtResource("11_2jl2c")
 expand_mode = 1
 stretch_mode = 5
 

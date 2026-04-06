@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cdcevdspiwvr5"]
+[gd_scene load_steps=21 format=3 uid="uid://cdcevdspiwvr5"]
 
 [ext_resource type="Script" uid="uid://qx8uggohxsod" path="res://Scenes/SelectLevel/select_level.gd" id="1_epbsi"]
 [ext_resource type="Texture2D" uid="uid://co55grrtuffw2" path="res://resource/background/bg_game_UI/目录.png" id="2_ho2ql"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c4lsn4mgelx22" path="res://resource/目录/书签/书签五选中.png" id="16_pbfwj"]
 [ext_resource type="Texture2D" uid="uid://dcnu1mmvgg8hq" path="res://resource/目录/书签/书签五锁定.png" id="17_xpijg"]
 [ext_resource type="Texture2D" uid="uid://cverjkomvhgsv" path="res://resource/目录/书签/重置图标.png" id="19_mdauv"]
+[ext_resource type="Texture2D" uid="uid://bi1k6bpfhh02k" path="res://resource/UI/教程.png" id="20_2u26v"]
 
 [node name="SelectLevel" type="Control"]
 layout_mode = 3
@@ -126,6 +127,16 @@ offset_bottom = 983.1617
 rotation = -0.3881905
 texture_normal = ExtResource("19_mdauv")
 ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 330.0
+offset_right = 817.0
+offset_bottom = 830.0
+texture = ExtResource("20_2u26v")
+expand_mode = 1
 stretch_mode = 5
 
 [connection signal="mouse_entered" from="LevelOne" to="." method="_btn_hover"]

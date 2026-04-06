@@ -3,23 +3,27 @@ extends TextureButton
 @onready var background: TextureRect = $".."
 @onready var btn_bg: TextureRect = $"../BtnBg"
 
+@onready var sign_anim: AnimationPlayer = $SignPlay/SignAnim
+
+
 # 图片资源
 var buton_textures : Array = [
 	null,
 	"res://resource/UI/章节/0_0011_第一章选中.png",
-	"res://resource/UI/章节/0_0010_第一章默认.png",
+	"res://resource/UI/章节/新版章节/_0004_第一章.png",
 	"res://resource/UI/章节/0_0008_第二章选中.png",
-	"res://resource/UI/章节/0_0009_第二章默认.png",
+	"res://resource/UI/章节/新版章节/_0003_第二章.png",
 	"res://resource/UI/章节/0_0006_第三章选中.png",
-	"res://resource/UI/章节/0_0007_第三章默认.png",
+	"res://resource/UI/章节/新版章节/_0002_第三章.png",
 	"res://resource/UI/章节/0_0002_第四章选中.png",
-	"res://resource/UI/章节/0_0003_第四章默认.png",
+	"res://resource/UI/章节/新版章节/_0001_第四章.png",
 	"res://resource/UI/章节/0_0000_第五章选中.png",
-	"res://resource/UI/章节/0_0001_第五章默认.png",
+	"res://resource/UI/章节/新版章节/_0000_第五章.png",
 ]
 
 
 func _ready() -> void:
+	sign_anim.play("sign_default")
 	var lv_num:int = 0
 	for temp:bool in GlobalData.change_lv:
 		if temp :
@@ -41,6 +45,7 @@ func _ready() -> void:
 			lv_num += 1
 
 func _on_beginning_pressed() -> void:
+	GlobalAudio.play_bgm("目录")
 	print(self.name, " 被按下")
 	GlobalAudio.play_select()
 	

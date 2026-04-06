@@ -16,6 +16,9 @@ var is_exiting: bool = false
 
 func _ready() -> void:
 	print(self.name ,"    ready 运行")
+	
+	GlobalAudio.play_bgm("目录")
+	
 	set_meta("is_scene_node", true)  # 标记为场景节点
 	texture_rect.visible = false
 	
