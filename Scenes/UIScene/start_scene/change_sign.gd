@@ -17,6 +17,7 @@ func _ready() -> void:
 func _on_start_but_mouse_entered() -> void:
 	start_sign.visible = true
 	start_anim.play("default")
+	GlobalAudio.play_hover()
 	pass # Replace with function body.
 
 
@@ -28,6 +29,7 @@ func _on_start_but_mouse_exited() -> void:
 func _on_set_but_mouse_entered() -> void:
 	set_sign.visible = true
 	set_anim.play("default")
+	GlobalAudio.play_hover()
 	pass # Replace with function body.
 
 
@@ -39,6 +41,7 @@ func _on_set_but_mouse_exited() -> void:
 func _on_exit_mouse_entered() -> void:
 	exit_sign.visible = true
 	exit_anim.play("default")
+	GlobalAudio.play_hover()
 	pass # Replace with function body.
 
 

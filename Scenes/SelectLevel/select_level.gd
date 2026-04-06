@@ -20,6 +20,7 @@ func refresh_all_level_buttons() -> void:
 
 # 所有关卡按钮共用的点击函数
 func _on_level_clicked(button:TextureButton)->void:
+	GlobalAudio.play_select()
 	# 获取关卡编号
 	var level_num:int = get_level_number(button.name)
 	# 安全判断：关卡已解锁才允许进入
@@ -79,11 +80,17 @@ func set_lock_level(btn: TextureButton,level_num:int)->void:
 	btn.disabled = not GlobalConfig.unlocked_levels[level_num]  
 
 func _on_back_start_pressed() -> void:
+	GlobalAudio.play_select()
 	GradualChange.change_scene(GlobalData.START_SCENE_PATH)
 
 
 func _on_reset_pressed() -> void:
+	GlobalAudio.play_select()
 	print("重置按钮按下")
 	GlobalConfig.reset_all_levels()
 	refresh_all_level_buttons()
 	pass # Replace with function body.
+
+
+func _btn_hover()->void:
+	GlobalAudio.play_hover()

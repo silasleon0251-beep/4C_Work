@@ -42,6 +42,7 @@ func _ready() -> void:
 
 func _on_beginning_pressed() -> void:
 	print(self.name, " 被按下")
+	GlobalAudio.play_select()
 	
 	var lv_num:int = 0
 	for temp:bool in GlobalData.change_lv:
@@ -89,3 +90,6 @@ func set_button_textures(
 	btn.texture_normal = load(my_normal)
 	btn.texture_hover = load(my_hover)
 	btn.texture_pressed = load(my_pressed)
+
+func _btn_hover()->void:
+	GlobalAudio.play_hover()

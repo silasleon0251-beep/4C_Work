@@ -78,4 +78,5 @@ offset_top = 200.0
 offset_right = -195.0
 offset_bottom = -180.0
 
+[connection signal="mouse_entered" from="BgAndChar/Background/Beginning" to="BgAndChar/Background/Beginning" method="_btn_hover"]
 [connection signal="pressed" from="BgAndChar/Background/Beginning" to="BgAndChar/Background/Beginning" method="_on_beginning_pressed"]

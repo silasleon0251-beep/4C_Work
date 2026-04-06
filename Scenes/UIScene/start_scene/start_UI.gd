@@ -19,28 +19,28 @@ func _ready() -> void:
 	set_meta("is_scene_node", true)  # 标记为场景节点
 	texture_rect.visible = false
 	
-	# 确认退出按钮绑定
-	confirm_exit_btn.pressed.connect(_do_real_exit)
-	cancel_exit_btn.pressed.connect(_cancel_exit)
 	
 
 func _exit_tree() -> void:
 	print(self.name, "   Destruction")
 
 func _on_start_but_pressed() -> void:
+	GlobalAudio.play_select()
+	
 	GradualChange.change_scene(GlobalData.LEVEL_SCENE_PATH)
-	pass # Replace with function body.
+
 
 func _on_set_but_pressed() -> void:
+	
+	GlobalAudio.play_select()
 	GradualChange.change_scene(GlobalData.SET_SCENE_PATH)
 
-func _on_collect_but_pressed() -> void:
-	pass # Replace with function body.
 
 # 退出游戏
 
 # 退出按钮点击 → 只弹确认框，不直接退出
 func _on_exit_pressed() -> void:
+	GlobalAudio.play_select()
 	show_exit_confirm()
 
 # 显示退出确认弹窗
@@ -53,7 +53,7 @@ func show_exit_confirm() -> void:
 # 取消退出
 func _cancel_exit() -> void:
 	exit_confirm_panel.visible = false
-	
+	GlobalAudio.play_cancel()
 	head_line.visible = true
 	v_box_container.visible = true
 
@@ -62,6 +62,8 @@ func _do_real_exit() -> void:
 	if is_exiting:
 		return
 	is_exiting = true
+	GlobalAudio.play_select()
+	await get_tree().process_frame
 	
 	# 1. 清理SceneManager的场景缓存
 	if SceneManager:
@@ -89,10 +91,14 @@ func _notification(what: int) -> void:
 		show_exit_confirm()
 
 func _on_easter_egg_pressed() -> void:
+	GlobalAudio.play_select()
 	texture_rect.visible = true
-	pass # Replace with function body.
+
 
 
 func _on_easter_egg_exit_pressed() -> void:
 	texture_rect.visible = false
-	pass # Replace with function body.
+
+
+func _btn_hover()->void:
+	GlobalAudio.play_hover()

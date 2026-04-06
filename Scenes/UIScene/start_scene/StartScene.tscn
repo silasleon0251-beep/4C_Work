@@ -17,6 +17,21 @@
 [ext_resource type="Texture2D" uid="uid://byt14b3qfywit" path="res://resource/UI/退出/_0001_否默认.png" id="16_exaxl"]
 [ext_resource type="Texture2D" uid="uid://b0drko4e7r368" path="res://resource/UI/退出/_0000_否选中.png" id="17_3v2g1"]
 
+[sub_resource type="Animation" id="Animation_2jl2c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-26.7, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_h3jl7"]
 resource_name = "default"
 length = 0.5
@@ -34,7 +49,13 @@ tracks/0/keys = {
 "values": [Vector2(14.25, -3), Vector2(25.25, -3)]
 }
 
-[sub_resource type="Animation" id="Animation_2jl2c"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m363r"]
+_data = {
+&"RESET": SubResource("Animation_2jl2c"),
+&"default": SubResource("Animation_h3jl7")
+}
+
+[sub_resource type="Animation" id="Animation_b8smd"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -46,13 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-26.7, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_m363r"]
-_data = {
-&"RESET": SubResource("Animation_2jl2c"),
-&"default": SubResource("Animation_h3jl7")
+"values": [Vector2(56.78, 110)]
 }
 
 [sub_resource type="Animation" id="Animation_05b4y"]
@@ -72,7 +87,13 @@ tracks/0/keys = {
 "values": [Vector2(83.24997, 104), Vector2(94.435, 104)]
 }
 
-[sub_resource type="Animation" id="Animation_b8smd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_exaxl"]
+_data = {
+&"RESET": SubResource("Animation_b8smd"),
+&"default": SubResource("Animation_05b4y")
+}
+
+[sub_resource type="Animation" id="Animation_jt660"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -84,13 +105,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(56.78, 110)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_exaxl"]
-_data = {
-&"RESET": SubResource("Animation_b8smd"),
-&"default": SubResource("Animation_05b4y")
+"values": [Vector2(68.865, 209)]
 }
 
 [sub_resource type="Animation" id="Animation_3v2g1"]
@@ -108,21 +123,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(83.25, 205), Vector2(98.25, 205)]
-}
-
-[sub_resource type="Animation" id="Animation_jt660"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(68.865, 209)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_neicd"]
@@ -310,16 +310,6 @@ theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxFlat_sk6gg")
 text = "X"
 
-[node name="CollectBut" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -221.0
-offset_top = 961.0
-offset_right = -85.0
-offset_bottom = 1057.0
-theme_override_font_sizes/font_size = 64
-text = "收藏"
-
 [node name="ExitConfirmPanel" type="ColorRect" parent="."]
 visible = false
 layout_mode = 0
@@ -374,4 +364,7 @@ stretch_mode = 5
 [connection signal="mouse_exited" from="VBoxContainer/Exit" to="ChangeSign" method="_on_exit_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="TextureRect/EasterEggExit" to="." method="_on_easter_egg_exit_pressed"]
-[connection signal="pressed" from="CollectBut" to="." method="_on_collect_but_pressed"]
+[connection signal="mouse_entered" from="ExitConfirmPanel/ConfirmExitBtn" to="." method="_btn_hover"]
+[connection signal="pressed" from="ExitConfirmPanel/ConfirmExitBtn" to="." method="_do_real_exit"]
+[connection signal="mouse_entered" from="ExitConfirmPanel/CancelExitBtn" to="." method="_btn_hover"]
+[connection signal="pressed" from="ExitConfirmPanel/CancelExitBtn" to="." method="_cancel_exit"]

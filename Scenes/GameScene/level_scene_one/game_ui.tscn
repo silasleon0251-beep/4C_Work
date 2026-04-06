@@ -88,5 +88,7 @@ texture = ExtResource("7_kq6vf")
 expand_mode = 1
 stretch_mode = 5
 
+[connection signal="mouse_entered" from="PauseInterface/ContinueBtn" to="." method="_btn_hover"]
 [connection signal="pressed" from="PauseInterface/ContinueBtn" to="." method="_on_continue_btn_pressed"]
+[connection signal="mouse_entered" from="PauseInterface/ReturnMain" to="." method="_btn_hover"]
 [connection signal="pressed" from="PauseInterface/ReturnMain" to="." method="_on_return_main_pressed"]

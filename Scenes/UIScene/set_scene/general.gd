@@ -32,37 +32,45 @@ func _ready() -> void:
 # 保存数据
 func _on_save_btn_pressed() -> void:
 	# 数据保存函数
+	GlobalAudio.play_select()
+	
 	GlobalConfig.save_config()
 	print("数据保存成功!")
 	
 
 # 返回开始界面
 func _on_back_btn_pressed() -> void:
+	GlobalAudio.play_select()
 	GradualChange.change_scene(GlobalData.START_SCENE_PATH)
 	pass # Replace with function body.
 
 # 重置数据
 func _on_reset_btn_pressed() -> void:
+	GlobalAudio.play_select()
 	$"../BasicSetting/Control".reset_slider()
 	pass # Replace with function body.
 
 
 func _on_test_btn_pressed() -> void:
 	# TODO 临时充当数据输出的端口 TODO
+	GlobalAudio.play_select()
 	GlobalConfig.print_all_config_data()
 	pass # Replace with function body.
 
 
 func _on_basic_btn_pressed() -> void:
 	switch_tab(0)
+	GlobalAudio.play_select()
 	print("基础设置")
 
 func _on_picture_btn_pressed() -> void:
 	switch_tab(1)
+	GlobalAudio.play_select()
 	print("画面设置")
 
 func _on_control_btn_pressed() -> void:
 	switch_tab(2)
+	GlobalAudio.play_select()
 	print("操作设置")
 
 # 同时只显示一个设置界面
@@ -84,3 +92,7 @@ func switch_tab(show_index: int) -> void:
 			setting_node[i].visible = true       # 显示指定按钮
 		else:
 			setting_node[i].visible = false      # 隐藏其他所有按钮
+
+
+func _btn_hover()->void:
+	GlobalAudio.play_hover()

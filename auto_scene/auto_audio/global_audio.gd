@@ -1,90 +1,133 @@
 extends Node
 
-static var instance: GlobalAudio
+# 三个音效：选择、悬停、取消
+# ------------------------------
+@export var audio_select: AudioStream   # 选择
+@export var audio_hover: AudioStream     # 悬停
+@export var audio_cancel: AudioStream    # 取消
 
-# 检查器拖入音效
-@export var sound_click: AudioStream
-@export var sound_hover: AudioStream
-@export var sound_confirm: AudioStream
-@export var bgm_main: AudioStream
+@export var bgm_dict: Dictionary = {}
 
-# 音频播放器
+@export var test_sound: AudioStream # 测试音效
+
 @onready var sfx_player: AudioStreamPlayer = $SFXPlayer
 @onready var bgm_player: AudioStreamPlayer = $BGMPlayer
+@onready var test_player: AudioStreamPlayer = $TestPlayer
 
-# ------------------------------
-# 你的音量公式（只复制这两个函数）
-# ------------------------------
-func get_log_volume(linear_val: int) -> int:
-	var val = clamp(linear_val, 0, 100)
-	if val == 0:
-		return 0
-	var log_val = 100.0 * (pow(10.0, val / 50.0) - 1.0) / 200.0
-	return round(log_val) as int
+var bgm_timer: Timer = null
 
-func get_final_volume(master: int, vol: int) -> int:
-	var master_log = get_log_volume(master)
-	var vol_log = get_log_volume(vol)
-	var final = (master_log * vol_log) / 100.0
-	return clamp(final, 0, 100) as int
-
-# ------------------------------
-# 应用音量（只读 GlobalConfig）
-# ------------------------------
-func apply_volume():
-	if not GlobalConfig:
-		return
-
-	# BGM 音量
-	var bgm_final = get_final_volume(GlobalConfig.main_volume_value, GlobalConfig.bgm_value)
-	bgm_player.volume_db = linear_to_db(bgm_final / 100.0) if bgm_final != 0 else -80.0
-
-	# 音效音量
-	var sfx_final = get_final_volume(GlobalConfig.main_volume_value, GlobalConfig.sound_effect_value)
-	sfx_player.volume_db = linear_to_db(sfx_final / 100.0) if sfx_final != 0 else -80.0
-
-# ------------------------------
-# 初始化
-# ------------------------------
-func _ready():
-	if instance:
-		queue_free()
-		return
-	instance = self
+func _ready()->void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	apply_volume()
+	await get_tree().process_frame
+	
+	# 创建BGM定时停止计时器
+	bgm_timer = Timer.new()
+	add_child(bgm_timer)
+	bgm_timer.timeout.connect(stop_bgm)
+	
+	refresh_volume()
 
-# ------------------------------
-# 播放音效
-# ------------------------------
-static func play_click():
-	if not instance or not instance.sound_click: return
-	instance.apply_volume()
-	instance.sfx_player.stream = instance.sound_click
-	instance.sfx_player.play()
 
-static func play_hover():
-	if not instance or not instance.sound_hover: return
-	instance.apply_volume()
-	instance.sfx_player.stream = instance.sound_hover
-	instance.sfx_player.play()
+func get_log_volume(linear_val: int) -> float:
+	var val:int = clamp(linear_val, 0, 100)
+	if val == 0:
+		return 0.0
+	var log_val:float = 100.0 * (pow(2.0, val / 50.0) - 1.0)
+	return log_val
 
-static func play_confirm():
-	if not instance or not instance.sound_confirm: return
-	instance.apply_volume()
-	instance.sfx_player.stream = instance.sound_confirm
-	instance.sfx_player.play()
+func get_final_volume(master: int, vol: int) -> float:
+	var master_log:float = get_log_volume(master)
+	var vol_log:float = get_log_volume(vol)
+	var final:float = (master_log * vol_log) / 10000.0 * 100.0
+	return clamp(final, 0, 100)
 
-# ------------------------------
+# ==============================
+# 全局刷新音量（只读）
+# ==============================
+func refresh_volume()->void:
+	_apply_volume()
+
+func _apply_volume()->void:
+	if not GlobalConfig: return
+	
+	var main:int  = GlobalConfig.main_volume_value
+	var bgm:int = GlobalConfig.bgm_value
+	var sfx:int = GlobalConfig.sound_effect_value
+	
+	print("main:",main," bgm:", bgm," sfx:", sfx)
+
+	var final_bgm:float = get_final_volume(main, bgm)
+	var final_sfx:float = get_final_volume(main, sfx)
+	
+	print("BGM音量:",final_bgm)
+	print("SFX音量:",final_sfx)
+	# 正确的dB转换
+	bgm_player.volume_db = linear_to_db(final_bgm / 100.0)
+	sfx_player.volume_db = linear_to_db(final_sfx / 100.0)
+	test_player.volume_db = sfx_player.volume_db
+
+	# 静音时停止
+	if final_bgm <= 0:
+		stop_bgm()
+	if final_sfx <= 0:
+		sfx_player.stop()
+		test_player.stop()
+
+
+# ==============================
+# 游戏音效
+# ==============================
+func play_select()->void:
+	_apply_volume()
+	if audio_select:
+		sfx_player.stop()
+		sfx_player.stream = audio_select
+		sfx_player.play()
+
+func play_hover()->void:
+	_apply_volume()
+	if audio_hover:
+		sfx_player.stop()
+		sfx_player.stream = audio_hover
+		sfx_player.play()
+
+func play_cancel()->void:
+	_apply_volume()
+	if audio_cancel:
+		sfx_player.stop()
+		sfx_player.stream = audio_cancel
+		sfx_player.play()
+# ==============================
 # BGM
-# ------------------------------
-static func play_main_bgm(loop: bool = true):
-	if not instance or not instance.bgm_main: return
-	instance.apply_volume()
-	instance.bgm_player.stream = instance.bgm_main
-	instance.bgm_player.loop = loop
-	instance.bgm_player.play()
+# ==============================
+func play_bgm(bgm_key: String, duration: float = -1.0)->void:
+	if not bgm_dict.has(bgm_key):
+		print("BGM 不存在: ", bgm_key)
+		return
 
-static func stop_bgm():
-	if instance:
-		instance.bgm_player.stop()
+	var audio: AudioStream = bgm_dict[bgm_key]
+	if not audio:
+		return
+
+	stop_bgm()
+	_apply_volume()
+
+	bgm_player.stream = audio
+	bgm_player.play()
+
+	if duration > 0:
+		bgm_timer.wait_time = duration
+		bgm_timer.start()
+
+func stop_bgm()->void:
+	bgm_timer.stop()
+	bgm_player.stop()
+
+# ==============================
+# 设置界面测试音效
+# ==============================
+func play_test_sfx()->void:
+	_apply_volume()
+	if test_sound:
+		test_player.stream = test_sound
+		test_player.play()

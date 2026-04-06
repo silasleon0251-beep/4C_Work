@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctcpu7pgpfdf8"]
+
+[ext_resource type="Script" uid="uid://dhlidtgaaykwn" path="res://Scenes/test_audio/test_audio.gd" id="1_ax1ra"]
+
+[node name="TestAudio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ax1ra")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 993.0
+offset_top = 151.0
+offset_right = 1166.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 64
+text = "测试1"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1016.99994
+offset_top = 518.0
+offset_right = 1190.0
+offset_bottom = 618.0
+theme_override_font_sizes/font_size = 64
+text = "测试1"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 997.0
+offset_top = 722.0
+offset_right = 1170.0
+offset_bottom = 822.0
+theme_override_font_sizes/font_size = 64
+text = "测试1"
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 993.0
+offset_top = 338.0
+offset_right = 1166.0
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 64
+text = "测试1"
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="Button2" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="Button3" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="Button4" to="." method="_on_button_mouse_entered"]

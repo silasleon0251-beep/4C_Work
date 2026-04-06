@@ -32,6 +32,7 @@ func _on_suspend_pressed() -> void:
 
 # 继续游戏按钮点击事件函数
 func _on_continue_btn_pressed() -> void:
+	GlobalAudio.play_select()
 	# 设置全局配置：游戏恢复运行
 	GameManager.is_game_running = true
 
@@ -44,5 +45,9 @@ func _on_continue_btn_pressed() -> void:
 
 # 返回主界面按钮点击事件函数
 func _on_return_main_pressed() -> void:
+	GlobalAudio.play_select()
 	# 调用渐变切换场景工具，跳转到主场景
 	GradualChange.change_scene(GlobalData.START_SCENE_PATH)
+
+func _btn_hover()->void:
+	GlobalAudio.play_hover()
